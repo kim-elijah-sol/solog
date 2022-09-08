@@ -2,6 +2,7 @@ import ThemeProvider from '@components/ThemeProvider'
 import type { AppContext, AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import GlobalStyle from '@components/GlobalStyle'
+import Seo from '@components/Seo'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { theme } = pageProps
@@ -9,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ThemeProvider defaultTheme={theme}>
+        <Seo />
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>

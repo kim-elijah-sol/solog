@@ -1,10 +1,8 @@
 import $theme from '@atoms/global/theme'
-import useIsMount from '@hooks/global/useIsMount'
+import Link from 'next/link'
 import { useSetRecoilState } from 'recoil'
 
 function Home() {
-  const { isMount } = useIsMount()
-
   const setTheme = useSetRecoilState($theme)
 
   function onClickToggleTheme() {
@@ -12,7 +10,10 @@ function Home() {
   }
 
   return (
-    <>{isMount && <button onClick={onClickToggleTheme}>테마 Toggle!</button>}</>
+    <>
+      <Link href='/detail'>상세 페이지로</Link>
+      <button onClick={onClickToggleTheme}>테마 Toggle!</button>
+    </>
   )
 }
 

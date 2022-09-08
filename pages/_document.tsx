@@ -5,6 +5,17 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/**
+           * Next.js 초기 렌더링 비어있는 경우 방지
+           */}
+          <style
+            dangerouslySetInnerHTML={{
+              __html: 'body{display:block !important}',
+            }}
+          />
+          {/**
+           * Google Fonts
+           */}
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link

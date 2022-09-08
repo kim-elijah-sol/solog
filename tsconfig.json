@@ -17,10 +17,12 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@styles/*": ["styles/*"],
       "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@shared/*": ["shared/*"],
       "@atoms/*": ["states/atoms/*"],
-      "@hooks/*": ["hooks/*"]
+      "@selectors/*": ["states/selectors/*"],
+      "@styles/*": ["styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
