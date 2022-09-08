@@ -1,9 +1,10 @@
 import { atom } from 'recoil'
+import keys from 'states/keys'
 
 export type ThemeType = 'light' | 'dark'
 
 const $theme = atom<ThemeType>({
-  key: '@window/theme',
+  key: keys.atoms.theme,
   default: 'light',
 })
 
