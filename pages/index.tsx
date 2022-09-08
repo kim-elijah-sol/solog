@@ -1,19 +1,13 @@
-import $theme from '@atoms/global/theme'
-import Link from 'next/link'
-import { useSetRecoilState } from 'recoil'
+import Flex from '@components/layout/Flex'
+import Spacing from '@components/layout/Spacing'
 
 function Home() {
-  const setTheme = useSetRecoilState($theme)
-
-  function onClickToggleTheme() {
-    setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
-  }
-
   return (
-    <>
-      <Link href='/detail'>상세 페이지로</Link>
-      <button onClick={onClickToggleTheme}>테마 Toggle!</button>
-    </>
+    <Flex column>
+      <p>안녕</p>
+      <Spacing size={10} />
+      <p>하세요</p>
+    </Flex>
   )
 }
 
