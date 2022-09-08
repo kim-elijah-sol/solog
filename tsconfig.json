@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,20 +17,12 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@styles/*": [
-        "styles/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ]
+      "@styles/*": ["styles/*"],
+      "@components/*": ["components/*"],
+      "@atoms/*": ["states/atoms/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    ".yarn"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": [".yarn"]
 }
