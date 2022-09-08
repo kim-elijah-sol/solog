@@ -6,4 +6,13 @@ export const reset = css`
     margin: 0;
     padding: 0;
   }
+
+  #__next {
+    min-height: 100vh;
+    width: 100vw;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 `

@@ -1,8 +1,7 @@
-import { reset } from '@styles/reset'
-import { Global } from '@emotion/react'
 import ThemeProvider from '@components/ThemeProvider'
 import type { AppContext, AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
+import GlobalStyle from '@components/GlobalStyle'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { theme } = pageProps
@@ -10,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ThemeProvider defaultTheme={theme}>
-        <Global styles={[reset]} />
+        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     </RecoilRoot>
