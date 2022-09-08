@@ -3,7 +3,8 @@ import { css } from '@emotion/react'
 export const reset = css`
   #__next {
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
+    transition: background 0.21s;
   }
 
   * {

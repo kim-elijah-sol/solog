@@ -1,7 +1,12 @@
+import $theme from '@atoms/global/theme'
 import Flex from '@components/layout/Flex'
+import Spacing from '@components/layout/Spacing'
 import { css, useTheme } from '@emotion/react'
 import { staticColor } from '@styles/palette'
 import React from 'react'
+import { useSetRecoilState } from 'recoil'
+
+const padding = 25
 
 function Box({
   color,
@@ -43,8 +48,24 @@ function Box({
 function Palette() {
   const { color } = useTheme()
 
+  const setTheme = useSetRecoilState($theme)
+
+  function onClickThemeToggle() {
+    setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
+  }
+
   return (
     <>
+      <Spacing size={30} />
+      <Flex
+        css={css`
+          align-items: center;
+          justify-content: center;
+        `}
+      >
+        <button onClick={onClickThemeToggle}>테마 토글</button>
+      </Flex>
+
       <Flex
         column
         css={css`
@@ -52,7 +73,7 @@ function Palette() {
           justify-content: center;
           width: 100%;
           height: 100%;
-          padding: 30px 0;
+          padding: ${padding}px 0;
         `}
       >
         <Flex>
@@ -78,7 +99,7 @@ function Palette() {
           justify-content: center;
           width: 100%;
           height: 100%;
-          padding: 30px 0;
+          padding: ${padding}px 0;
         `}
       >
         <Flex>
@@ -104,7 +125,7 @@ function Palette() {
           justify-content: center;
           width: 100%;
           height: 100%;
-          padding: 30px 0;
+          padding: ${padding}px 0;
         `}
       >
         <Flex>
