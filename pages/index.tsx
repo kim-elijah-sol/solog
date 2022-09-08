@@ -1,5 +1,4 @@
 import $theme from '@atoms/global/theme'
-import { css } from '@emotion/react'
 import useIsMount from '@hooks/global/useIsMount'
 import { useSetRecoilState } from 'recoil'
 
