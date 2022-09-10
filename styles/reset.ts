@@ -14,4 +14,11 @@ export const reset = css`
     font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.2;
   }
+
+  button,
+  input,
+  ul,
+  li {
+    all: unset;
+  }
 `

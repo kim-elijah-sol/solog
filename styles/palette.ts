@@ -2,9 +2,10 @@ import { ThemeColor } from 'emotion'
 
 export const lightColor: ThemeColor = {
   background: '#ffffff',
-  text_50: '#e0e0e0',
-  text_100: '#d0d0d0',
-  text_200: '#c0c0c0',
+
+  text_50: '#f5f5f5',
+  text_100: '#e0e0e0',
+  text_200: '#c5c5c5',
   text_300: '#a0a0a0',
   text_400: '#909090',
   text_500: '#808080',
@@ -15,9 +16,10 @@ export const lightColor: ThemeColor = {
 }
 
 export const darkColor: ThemeColor = {
-  background: '#212223',
-  text_50: '#303030',
-  text_100: '#353535',
+  background: '#1f1f1f',
+
+  text_50: '#252525',
+  text_100: '#303030',
   text_200: '#505050',
   text_300: '#656565',
   text_400: '#808080',
@@ -50,4 +52,25 @@ export const staticColor = {
   red_700: '#d8263f',
   red_800: '#cb1e38',
   red_900: '#bc0c2c',
+}
+
+/**
+ * hex 컬러 코드에 투명도를 조절한 rgba 값이 반환되는 함수
+ * @param color : 컬러코드 ( HexCode )
+ * @param opacity : 투명도 ( 0 ~ 1 )
+ * @returns rgba(r , g , b , o)
+ */
+export function opacity({
+  color,
+  opacity,
+}: {
+  color: string
+  opacity: number
+}) {
+  const hex = color.replace('#', '')
+  const red = parseInt(hex.substring(0, 2), 16)
+  const green = parseInt(hex.substring(2, 4), 16)
+  const blue = parseInt(hex.substring(4), 16)
+
+  return `rgba(${red}, ${green}, ${blue}, ${opacity})`
 }

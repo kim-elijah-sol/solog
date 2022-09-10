@@ -1,7 +1,12 @@
-import { css } from '@emotion/react'
-import { DefaultProps } from 'next-env'
+import { css, Interpolation, Theme } from '@emotion/react'
+import { ClassAttributes, HTMLAttributes } from 'react'
 
-interface Props extends DefaultProps<HTMLDivElement> {
+type ContainerProps = ClassAttributes<HTMLDivElement> &
+  HTMLAttributes<HTMLDivElement> & {
+    css?: Interpolation<Theme>
+  }
+
+interface Props extends ContainerProps {
   children?: React.ReactNode
   column?: boolean
   as?: 'article' | 'main'

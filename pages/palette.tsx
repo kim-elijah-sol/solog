@@ -1,4 +1,5 @@
 import $theme from '@atoms/global/theme'
+import InputField from '@components/InputField'
 import Flex from '@components/layout/Flex'
 import Spacing from '@components/layout/Spacing'
 import { css, useTheme } from '@emotion/react'
@@ -34,7 +35,7 @@ function Box({
         ${!children
           ? `
           &:hover {
-            transform: scale(0.95);
+            transform: scale(0.9);
           }
           `
           : ''}
@@ -42,6 +43,23 @@ function Box({
     >
       {children}
     </div>
+  )
+}
+
+function Container({ children }: { children: React.ReactNode }) {
+  return (
+    <Flex
+      column
+      css={css`
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: ${padding}px 0;
+      `}
+    >
+      {children}
+    </Flex>
   )
 }
 
@@ -66,16 +84,7 @@ function Palette() {
         <button onClick={onClickThemeToggle}>테마 토글</button>
       </Flex>
 
-      <Flex
-        column
-        css={css`
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 100%;
-          padding: ${padding}px 0;
-        `}
-      >
+      <Container>
         <Flex>
           <Box color={staticColor.primary_50} />
           <Box color={staticColor.primary_100} />
@@ -90,18 +99,9 @@ function Palette() {
           <Box color={staticColor.primary_800} />
           <Box color={staticColor.primary_900} />
         </Flex>
-      </Flex>
+      </Container>
 
-      <Flex
-        column
-        css={css`
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 100%;
-          padding: ${padding}px 0;
-        `}
-      >
+      <Container>
         <Flex>
           <Box color={staticColor.red_50} />
           <Box color={staticColor.red_100} />
@@ -116,18 +116,9 @@ function Palette() {
           <Box color={staticColor.red_800} />
           <Box color={staticColor.red_900} />
         </Flex>
-      </Flex>
+      </Container>
 
-      <Flex
-        column
-        css={css`
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 100%;
-          padding: ${padding}px 0;
-        `}
-      >
+      <Container>
         <Flex>
           <Box color='transparent' textColor={color.text_900}>
             Aa
@@ -162,7 +153,22 @@ function Palette() {
             Aa
           </Box>
         </Flex>
-      </Flex>
+      </Container>
+
+      <Container>
+        <InputField
+          type='text'
+          placeholder='값을 입력해주세요.'
+          autoComplete='off'
+        />
+        <Spacing size={24} />
+        <InputField
+          type='password'
+          placeholder='비밀번호를 입력해주세요.'
+          autoComplete='off'
+        />
+      </Container>
+      <Spacing size={32} />
     </>
   )
 }
