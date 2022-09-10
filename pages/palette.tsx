@@ -2,10 +2,12 @@ import $theme from '@atoms/global/theme'
 import InputField from '@components/InputField'
 import Flex from '@components/layout/Flex'
 import Spacing from '@components/layout/Spacing'
+import Dropdown from '@components/Dropdown'
+
 import { css, useTheme } from '@emotion/react'
 import { staticColor } from '@styles/palette'
 import transition from '@styles/transition'
-import React from 'react'
+import React, { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 const padding = 25
@@ -72,6 +74,48 @@ function Palette() {
   function onClickThemeToggle() {
     setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
   }
+
+  const [selected, setSelected] = useState<number[]>([])
+
+  const 라이브러리 = [
+    {
+      name: 'React.js',
+      id: 1,
+    },
+    {
+      name: 'Vue.js',
+      id: 2,
+    },
+    {
+      name: 'Svelte',
+      id: 3,
+    },
+    {
+      name: 'Solid.js',
+      id: 4,
+    },
+    {
+      name: 'Next.js',
+      id: 5,
+    },
+    {
+      name: 'Remix',
+      id: 6,
+    },
+  ]
+
+  function onChange(id: number) {
+    setSelected(
+      selected.includes(id)
+        ? selected.filter((_id) => _id !== id)
+        : selected.concat(id)
+    )
+  }
+
+  const value = 라이브러리
+    .filter(({ id }) => selected.includes(id))
+    .map(({ name }) => name)
+    .join(', ')
 
   return (
     <>
@@ -155,6 +199,22 @@ function Palette() {
           </Box>
         </Flex>
       </Container>
+
+      <Container>
+        <Dropdown
+          placeholder='라이브러리를 선택해주세요.'
+          value={value}
+          onChange={onChange}
+        >
+          {라이브러리.map(({ id, name }) => (
+            <Dropdown.Option value={id} checked={selected.includes(id)}>
+              {name}
+            </Dropdown.Option>
+          ))}
+        </Dropdown>
+      </Container>
+
+      <Spacing size={64} />
 
       <Container>
         <InputField

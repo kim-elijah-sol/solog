@@ -1,7 +1,8 @@
-import { Interpolation } from '@emotion/styled'
 import { ClassAttributes, InputHTMLAttributes } from 'react'
 import { css, Theme, useTheme } from '@emotion/react'
-import { opacity } from '@styles/palette'
+import { Interpolation } from '@emotion/styled'
+import { boxShadowBorder } from '@styles/common'
+import { staticColor } from '@styles/palette'
 import transition from '@styles/transition'
 
 type InputProps = ClassAttributes<HTMLInputElement> &
@@ -10,6 +11,14 @@ type InputProps = ClassAttributes<HTMLInputElement> &
   }
 
 interface Props extends InputProps {}
+
+const palette = {
+  width: 300,
+  height: 46,
+  radius: 8,
+  horizontalPadding: 16,
+  focusOpacity: 0.7,
+}
 
 function InputField(props: Props) {
   const { color } = useTheme()
@@ -25,19 +34,21 @@ function InputField(props: Props) {
       <input
         {...inputProps}
         css={css`
-          width: 300px;
-          height: 46px;
-          padding: 0 16px;
-          background-color: ${color.text_50};
+          width: ${palette.width}px;
+          height: ${palette.height}px;
+          padding: 0 ${palette.horizontalPadding}px;
           color: ${color.text_900};
-          border-radius: 8px;
-          transition: all ${transition.fast};
+          border-radius: ${palette.radius}px;
+          transition: all ${transition.fast} ease;
+          ${boxShadowBorder({ width: 1, color: color.text_100 })}
+          box-shadow: inset 0 0 0 1px ${color.text_100};
+
+          &:hover {
+            ${boxShadowBorder({ width: 2, color: staticColor.primary_400 })}
+          }
 
           &:focus {
-            background-color: ${opacity({
-              color: color.text_100,
-              opacity: 0.7,
-            })};
+            ${boxShadowBorder({ width: 2, color: staticColor.primary_900 })}
           }
 
           &::placeholder {
@@ -49,5 +60,7 @@ function InputField(props: Props) {
     </div>
   )
 }
+
+InputField.palette = palette
 
 export default InputField

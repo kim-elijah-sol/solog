@@ -1,6 +1,8 @@
 import { ThemeColor } from 'emotion'
 
 export const lightColor: ThemeColor = {
+  type: 'light',
+
   background: '#ffffff',
 
   text_50: '#f5f5f5',
@@ -16,7 +18,9 @@ export const lightColor: ThemeColor = {
 }
 
 export const darkColor: ThemeColor = {
-  background: '#1f1f1f',
+  type: 'dark',
+
+  background: '#212121',
 
   text_50: '#252525',
   text_100: '#303030',
