@@ -1,10 +1,18 @@
 import { css } from '@emotion/react'
+import transition from './transition'
 
 export const reset = css`
   #__next {
     min-height: 100vh;
     width: 100%;
-    transition: background 0.21s;
+    transition: background ${transition.fast};
+  }
+
+  button,
+  input {
+    border: 0;
+    appearance: none;
+    background-color: transparent;
   }
 
   * {
@@ -13,12 +21,10 @@ export const reset = css`
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.2;
-  }
+    font-size: 14px;
 
-  button,
-  input,
-  ul,
-  li {
-    all: unset;
+    &:focus {
+      outline: 0;
+    }
   }
 `

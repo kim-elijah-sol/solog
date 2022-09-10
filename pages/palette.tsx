@@ -4,6 +4,7 @@ import Flex from '@components/layout/Flex'
 import Spacing from '@components/layout/Spacing'
 import { css, useTheme } from '@emotion/react'
 import { staticColor } from '@styles/palette'
+import transition from '@styles/transition'
 import React from 'react'
 import { useSetRecoilState } from 'recoil'
 
@@ -25,7 +26,7 @@ function Box({
         height: 100px;
         background-color: ${color};
         cursor: pointer;
-        transition: 0.21s;
+        transition: ${transition.fast};
         color: ${textColor ?? '#fff'};
         display: flex;
         align-items: center;
