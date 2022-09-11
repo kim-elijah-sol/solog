@@ -9,6 +9,7 @@ import { staticColor } from '@styles/palette'
 import transition from '@styles/transition'
 import React, { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
+import Radio from '@components/Radio'
 
 const padding = 25
 
@@ -117,6 +118,8 @@ function Palette() {
     .map(({ name }) => name)
     .join(', ')
 
+  const [selectLib, setSelectLib] = useState('')
+
   return (
     <>
       <Spacing size={30} />
@@ -212,6 +215,26 @@ function Palette() {
             </Dropdown.Option>
           ))}
         </Dropdown>
+      </Container>
+
+      <Container>
+        <Flex
+          css={css`
+            gap: 16px;
+          `}
+        >
+          {라이브러리.map(({ id, name }) => (
+            <Radio
+              id={id.toString()}
+              name='lib'
+              checked={selectLib === id.toString()}
+              onChange={(e) => setSelectLib(e.target.id)}
+              disabled={id === 5}
+            >
+              {name}
+            </Radio>
+          ))}
+        </Flex>
       </Container>
 
       <Spacing size={64} />
