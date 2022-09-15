@@ -44,6 +44,10 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
     background-color: ${(props) => props.themeColor.text_100};
     border-radius: 8px;
   }
+
+  li > ul {
+    padding-left: 2.5rem;
+  }
 `
 
 function Markdown({ children }: Props) {
