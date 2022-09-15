@@ -2,6 +2,17 @@ import { useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import { ThemeColor } from 'emotion'
 import ReactMarkdown from 'react-markdown'
+import gfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import {
+  materialLight,
+  materialDark,
+} from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { CodeProps } from 'react-markdown/lib/ast-to-react'
+import transition from '@styles/transition'
+import { ThemeType } from '@atoms/global/theme'
+import { darkColor, lightColor } from '@styles/palette'
 
 interface Props {
   children: string
@@ -11,13 +22,20 @@ interface MarkdownStyleProps {
   themeColor: ThemeColor
 }
 
+function getCodeBlockBackgroundColor(theme: ThemeType) {
+  return theme === 'dark' ? darkColor.text_100 : lightColor.text_50
+}
+
 const MarkdownStyle = styled.div<MarkdownStyleProps>`
   width: 100%;
   max-width: 648px;
 
-  *:not(code) {
-    font-size: 1rem;
-    line-height: 2.5rem;
+  * {
+    transition: ${transition.fast} !important;
+    &:not(code) {
+      font-size: 1rem;
+      line-height: 2.5rem;
+    }
   }
 
   h2 {
@@ -38,11 +56,25 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
     font-size: 1.5rem;
   }
 
+  ul {
+    padding-left: 16px;
+  }
+
   pre {
-    line-height: 1.5;
-    padding: 16px 8px;
-    background-color: ${(props) => props.themeColor.text_100};
-    border-radius: 8px;
+    > div {
+      background-color: ${(props) =>
+        getCodeBlockBackgroundColor(props.themeColor.type)} !important;
+      border-radius: 8px;
+
+      > code {
+        * {
+          line-height: 1.75rem;
+          font-family: 'Fira Code', monospace !important;
+          background-color: ${(props) =>
+            getCodeBlockBackgroundColor(props.themeColor.type)} !important;
+        }
+      }
+    }
   }
 
   li > ul {
@@ -50,12 +82,38 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   }
 `
 
+const codeBlock = (color: ThemeColor) => {
+  const style: any = color.type === 'light' ? materialLight : materialDark
+
+  return {
+    code({ node, inline, className, children, ...props }: CodeProps) {
+      const match = /language-(\w+)/.exec(className || '')
+      return !inline && match ? (
+        <SyntaxHighlighter
+          style={style}
+          language={match[1]}
+          PreTag='div'
+          {...props}
+        >
+          {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      )
+    },
+  }
+}
+
 function Markdown({ children }: Props) {
   const { color } = useTheme()
 
   return (
     <MarkdownStyle themeColor={color}>
-      <ReactMarkdown>{children}</ReactMarkdown>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]} components={codeBlock(color)}>
+        {children}
+      </ReactMarkdown>
     </MarkdownStyle>
   )
 }

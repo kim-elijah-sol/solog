@@ -95,11 +95,15 @@ const markdown = `
       - 리스트 3-3-3
 
   \`\`\`javascript
-    let code = 1
+  function solution () {
+    let answer = 1;
 
-    code += 1
+    answer = 2;
 
-    return code
+    answer += 1
+
+    return answer
+  }
   \`\`\`
 `
 
@@ -159,14 +163,9 @@ function Palette() {
   return (
     <>
       <Spacing size={30} />
-      <Flex
-        css={css`
-          align-items: center;
-          justify-content: center;
-        `}
-      >
-        <button onClick={onClickThemeToggle}>테마 토글</button>
-      </Flex>
+      <Container>
+        <Markdown>{markdown}</Markdown>
+      </Container>
 
       <Container>
         <Flex>
@@ -287,10 +286,6 @@ function Palette() {
           placeholder='비밀번호를 입력해주세요.'
           autoComplete='off'
         />
-      </Container>
-
-      <Container>
-        <Markdown>{markdown}</Markdown>
       </Container>
 
       <Spacing size={32} />
