@@ -9,10 +9,14 @@ import {
   ReactElement,
   useEffect,
 } from 'react'
-import InputField from '@components/InputField'
 import useBoolean from '@hooks/global/useBoolean'
 import { staticColor } from '@styles/palette'
-import { boxShadowBorder, ellipsis, thinScrollBar } from '@styles/common'
+import {
+  boxShadowBorder,
+  ellipsis,
+  inputSizes,
+  thinScrollBar,
+} from '@styles/common'
 import Flex from './layout/Flex'
 import FixedBackground from './FixedBackground'
 
@@ -67,11 +71,11 @@ function Dropdown({
       {...containerProps}
       css={css`
         position: relative;
-        width: ${InputField.palette.width}px;
-        height: ${InputField.palette.height}px;
-        padding: 0 ${InputField.palette.horizontalPadding}px;
+        width: ${inputSizes.width}px;
+        height: ${inputSizes.height}px;
+        padding: 0 ${inputSizes.horizontalPadding}px;
         color: ${color.text_900};
-        border-radius: ${InputField.palette.radius}px;
+        border-radius: ${inputSizes.radius}px;
         transition: all ${transition.fast};
         cursor: pointer;
         ${boxShadowBorder({
@@ -119,7 +123,7 @@ function Text({
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          max-width: calc(100% - ${InputField.palette.horizontalPadding * 2}px);
+          max-width: calc(100% - ${inputSizes.horizontalPadding * 2}px);
           color: ${color.text_900};
           transition: all ${transition.fast};
           user-select: none;
@@ -154,8 +158,8 @@ function Menu({
           top: calc(100% + 8px);
           max-height: 250px;
           overflow: hidden auto;
-          padding: ${InputField.palette.horizontalPadding / 2}px;
-          border-radius: ${InputField.palette.radius}px;
+          padding: ${inputSizes.horizontalPadding / 2}px;
+          border-radius: ${inputSizes.radius}px;
           background-color: ${color.background};
           ${boxShadowBorder({ color: color.text_100, width: 1 })}
           transition: all ${transition.fast};
@@ -190,9 +194,9 @@ function Option({ children, onChange, checked, value, ...rest }: OptionProps) {
       {...rest}
       css={css`
         text-align: left;
-        padding: ${InputField.palette.horizontalPadding}px;
+        padding: ${inputSizes.horizontalPadding}px;
         color: ${checked ? staticColor.primary_800 : color.text_900};
-        border-radius: ${InputField.palette.radius}px;
+        border-radius: ${inputSizes.radius}px;
         transition: all ${transition.fast};
         font-weight: 400;
         cursor: pointer;
