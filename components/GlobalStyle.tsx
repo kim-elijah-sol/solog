@@ -12,6 +12,10 @@ function GlobalStyle() {
           #__next {
             background-color: ${color.background};
           }
+
+          * {
+            color: ${color.text_900};
+          }
         `,
       ]}
     />

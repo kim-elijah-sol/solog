@@ -21,10 +21,13 @@ export const reset = css`
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.2;
-    font-size: 14px;
 
     &:focus {
       outline: 0;
+    }
+
+    &:not(h1, h2, h3, h4, h5, h6) {
+      font-size: 14px;
     }
   }
 `

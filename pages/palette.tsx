@@ -10,6 +10,7 @@ import transition from '@styles/transition'
 import React, { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import Radio from '@components/Radio'
+import Markdown from '@components/Markdown'
 
 const padding = 25
 
@@ -66,6 +67,38 @@ function Container({ children }: { children: React.ReactNode }) {
     </Flex>
   )
 }
+
+const markdown = `
+  ## 헤딩 h1
+  ### 헤딩 h2
+  #### 헤딩 h3
+
+  안녕하세요
+
+  **굵은 텍스트**
+
+  *랄로와 기울어진 마라탕*
+
+  > 인용문
+
+  - 리스트입니다.
+  - 리스트 1
+  - 리스트 2
+    - 리스트 2-1
+    - 리스트 2-2
+  - 리스트 3
+    - 리스트 3-1
+    - 리스트 3-2
+    - 리스트 3-3
+
+  \`\`\`javascript
+    let code = 1
+
+    code += 1
+
+    return code
+  \`\`\`
+`
 
 function Palette() {
   const { color } = useTheme()
@@ -252,6 +285,11 @@ function Palette() {
           autoComplete='off'
         />
       </Container>
+
+      <Container>
+        <Markdown>{markdown}</Markdown>
+      </Container>
+
       <Spacing size={32} />
     </>
   )
