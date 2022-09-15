@@ -2,7 +2,6 @@ import { useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import { ThemeColor } from 'emotion'
 import ReactMarkdown from 'react-markdown'
-import gfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import {

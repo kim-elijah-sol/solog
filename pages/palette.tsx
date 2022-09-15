@@ -94,15 +94,23 @@ const markdown = `
       - 리스트 3-3-2
       - 리스트 3-3-3
 
-  \`\`\`javascript
-  function solution () {
-    let answer = 1;
+  \`\`\`tsx
+  interface Props {
+    value : number
+  }
+
+  function solution ({ value } : Props) {
+    let answer : number = 1;
 
     answer = 2;
 
     answer += 1
 
-    return answer
+    return (
+      <div className="__sol__log__">
+        {answer}
+      </div>
+    )
   }
   \`\`\`
 `
