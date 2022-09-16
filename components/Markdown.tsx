@@ -124,12 +124,10 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
     }
   }
 
-  .md-center {
-    text-align: center;
-  }
-
   img {
     max-width: 100%;
+    margin: 1rem auto;
+    display: block;
   }
 
   a {
@@ -157,14 +155,6 @@ const codeBlock = (color: ThemeColor) => {
         <code className={className} {...props}>
           {children}
         </code>
-      )
-    },
-
-    img({ node, ...props }: CodeProps) {
-      return (
-        <div className='md-center'>
-          <img {...props} />
-        </div>
       )
     },
   }

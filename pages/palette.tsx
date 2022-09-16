@@ -95,6 +95,7 @@ const markdown = `
   <br/>
 
   ![](https://newevolutiondesigns.com/images/freebies/4k-space-wallpaper-1.jpg)
+
   ![](https://www.svgrepo.com/show/303600/typescript-logo.svg)
 
   - 리스트 1
@@ -182,7 +183,6 @@ function Palette() {
 
   return (
     <>
-      <Spacing size={30} />
       <Container>
         <Markdown>{markdown}</Markdown>
       </Container>
