@@ -2,6 +2,7 @@ import Link from '@components/Link'
 import ThemeToggleButton from '@components/ThemeToggleButton'
 import { css, Interpolation, Theme, useTheme } from '@emotion/react'
 import { firaCode } from '@styles/common'
+import { opacity } from '@styles/palette'
 import { ClassAttributes, HTMLAttributes } from 'react'
 import Flex from './Flex'
 
@@ -15,10 +16,17 @@ const headerStyle = css`
   align-items: center;
   justify-content: space-between;
 
-  width: 100%;
   height: 64px;
 
   padding: 0 32px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  backdrop-filter: blur(4px);
+  z-index: 100;
 `
 
 const rightSlotStyle = css`

@@ -30,4 +30,8 @@ export const reset = css`
       font-size: 14px;
     }
   }
+
+  #__solog__ {
+    padding-top: 64px;
+  }
 `

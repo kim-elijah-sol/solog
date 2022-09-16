@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil'
 import GlobalStyle from '@components/GlobalStyle'
 import Seo from '@components/Seo'
 import Header from '@components/layout/Header'
+import ParentContainer from '@components/layout/ParentContaier'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { theme } = pageProps
@@ -14,7 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Seo />
         <GlobalStyle />
         <Header />
-        <Component {...pageProps} />
+        <ParentContainer>
+          <Component {...pageProps} />
+        </ParentContainer>
       </ThemeProvider>
     </RecoilRoot>
   )
