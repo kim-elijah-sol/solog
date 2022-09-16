@@ -131,6 +131,11 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   img {
     max-width: 100%;
   }
+
+  a {
+    text-decoration: none;
+    color: ${staticColor.primary_800};
+  }
 `
 
 const codeBlock = (color: ThemeColor) => {
