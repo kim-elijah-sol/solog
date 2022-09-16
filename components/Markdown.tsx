@@ -40,23 +40,35 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   h2 {
     margin-bottom: 1rem;
     margin-top: 2.5rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   h3 {
     margin-bottom: 1rem;
     margin-top: 2.25rem;
-    font-size: 1.75rem;
+    font-size: 2.25rem;
   }
 
   h4 {
     margin-bottom: 1rem;
     margin-top: 2rem;
+    font-size: 2rem;
+  }
+
+  h5 {
+    margin-bottom: 1rem;
+    margin-top: 1.175rem;
+    font-size: 1.75rem;
+  }
+
+  h6 {
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
     font-size: 1.5rem;
   }
 
   ul {
-    padding-left: 16px;
+    padding-left: 20px;
   }
 
   pre {
