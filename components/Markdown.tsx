@@ -11,7 +11,7 @@ import {
 import { CodeProps } from 'react-markdown/lib/ast-to-react'
 import transition from '@styles/transition'
 import { ThemeType } from '@atoms/global/theme'
-import { darkColor, lightColor } from '@styles/palette'
+import { darkColor, lightColor, staticColor } from '@styles/palette'
 
 interface Props {
   children: string
@@ -29,40 +29,45 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   width: 100%;
   max-width: 648px;
 
+  $heading_margin_bottom: 1rem;
+
   * {
     transition: ${transition.fast} !important;
     &:not(code) {
       font-size: 1rem;
-      line-height: 2.5rem;
+      line-height: 2rem;
     }
   }
 
-  h2 {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-bottom: 1rem;
+  }
+
+  h2 {
     margin-top: 2.5rem;
     font-size: 2.5rem;
   }
 
   h3 {
-    margin-bottom: 1rem;
     margin-top: 2.25rem;
     font-size: 2.25rem;
   }
 
   h4 {
-    margin-bottom: 1rem;
     margin-top: 2rem;
     font-size: 2rem;
   }
 
   h5 {
-    margin-bottom: 1rem;
     margin-top: 1.175rem;
     font-size: 1.75rem;
   }
 
   h6 {
-    margin-bottom: 1rem;
     margin-top: 1.5rem;
     font-size: 1.5rem;
   }
@@ -91,6 +96,41 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   li > ul {
     padding-left: 2.5rem;
   }
+
+  blockquote {
+    background-color: ${(props) =>
+      getCodeBlockBackgroundColor(props.themeColor.type)};
+
+    padding: 16px;
+    padding-left: 24px;
+    border-radius: 8px;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background-color: ${staticColor.primary_900};
+    }
+
+    blockquote {
+      margin: 0.75rem 0;
+      border-radius: 0;
+    }
+  }
+
+  .md-center {
+    text-align: center;
+  }
+
+  img {
+    max-width: 100%;
+  }
 `
 
 const codeBlock = (color: ThemeColor) => {
@@ -112,6 +152,14 @@ const codeBlock = (color: ThemeColor) => {
         <code className={className} {...props}>
           {children}
         </code>
+      )
+    },
+
+    img({ node, ...props }: CodeProps) {
+      return (
+        <div className='md-center'>
+          <img {...props} />
+        </div>
       )
     },
   }
