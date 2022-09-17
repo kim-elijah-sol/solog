@@ -1,13 +1,20 @@
-import { css } from '@emotion/react'
+import { css, Interpolation, Theme } from '@emotion/react'
+import { ClassAttributes, HTMLAttributes } from 'react'
 
-interface Props {
+type ContainerProps = ClassAttributes<HTMLDivElement> &
+  HTMLAttributes<HTMLDivElement> & {
+    css?: Interpolation<Theme>
+  }
+
+interface Props extends Omit<ContainerProps, 'children'> {
   zIndex: number
   background?: string
 }
 
-function FixedBackground({ zIndex, background }: Props) {
+function FixedBackground({ zIndex, background, ...props }: Props) {
   return (
     <div
+      {...props}
       css={css`
         position: fixed;
         left: 0;

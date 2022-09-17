@@ -26,10 +26,9 @@ function getCodeBlockBackgroundColor(theme: ThemeType) {
 }
 
 const MarkdownStyle = styled.div<MarkdownStyleProps>`
-  width: 100%;
+  width: calc(100% - 32px);
   max-width: 648px;
-
-  $heading_margin_bottom: 1rem;
+  margin: 0 auto;
 
   * {
     transition: ${transition.fast} !important;
