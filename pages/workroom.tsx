@@ -62,93 +62,13 @@ function Workroom() {
           height: calc(100vh - 64px);
         `}
       >
-        <Flex
-          column
-          css={css`
-            background-color: ${color.text_100};
-            transition: background-color ${transition.fast};
-          `}
-          style={{
-            flex: divisionPosition,
-          }}
-        ></Flex>
+        <Left divisionPosition={divisionPosition}></Left>
 
         <Division onMouseDown={onClickDivision} moveAllow={moveAllow} />
 
-        <Flex
-          column
-          css={[
-            thinScrollBar(color.text_400),
-            css`
-              max-height: 100%;
-              overflow-y: auto;
-              padding-bottom: 32px;
-            `,
-          ]}
-          style={{
-            flex: 100 - divisionPosition,
-          }}
-        >
-          <Markdown>{`
-  ## 헤딩 h1
-  ### 헤딩 h2
-  #### 헤딩 h3
-  ##### 헤딩 h4
-  ###### 헤딩 h5
-
-  기본 텍스트
-
-  **굵은 텍스트**
-
-  *랄로와 기울어진 마라탕*
-
-  > 인용문
-  >> 인용 2문
-  >>> 인용 3문
-
-  인용문 끝났어요
-
-  _**[여긴 구글입니다.](https://www.google.com)**_
-
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-
-  ![](https://newevolutiondesigns.com/images/freebies/4k-space-wallpaper-1.jpg)
-
-  ![](https://www.svgrepo.com/show/303600/typescript-logo.svg)
-
-  - 리스트 1
-  - 리스트 2
-    - 리스트 2-1
-  - 리스트 3
-    - 리스트 3-1
-    - 리스트 3-2
-    - 리스트 3-3
-      - 리스트 3-3-1
-
-  \`\`\`tsx
-  interface Props {
-    value : number
-  }
-
-  function solution ({ value } : Props) {
-    let answer : number = 1;
-
-    answer = 2;
-
-    answer += 1
-
-    return (
-      <div className="__sol__log__">
-        {answer}
-      </div>
-    )
-  }
-  \`\`\`
-`}</Markdown>
-        </Flex>
+        <Right divisionPosition={divisionPosition}>
+          <Markdown>{content}</Markdown>
+        </Right>
       </Flex>
       {moveAllow && (
         <FixedBackground
@@ -209,6 +129,53 @@ function Division({ moveAllow, ...props }: Omit<DivisionProps, 'children'>) {
         }
       `}
     />
+  )
+}
+
+interface WrapperProps {
+  divisionPosition: number
+  children?: React.ReactNode
+}
+
+function Left({ divisionPosition, children }: WrapperProps) {
+  const { color } = useTheme()
+
+  return (
+    <Flex
+      column
+      css={css`
+        background-color: ${color.text_100};
+        transition: background-color ${transition.fast};
+      `}
+      style={{
+        flex: divisionPosition,
+      }}
+    >
+      {children}
+    </Flex>
+  )
+}
+
+function Right({ divisionPosition, children }: WrapperProps) {
+  const { color } = useTheme()
+
+  return (
+    <Flex
+      column
+      css={[
+        thinScrollBar(color.text_400),
+        css`
+          max-height: 100%;
+          overflow-y: auto;
+          padding-bottom: 32px;
+        `,
+      ]}
+      style={{
+        flex: 100 - divisionPosition,
+      }}
+    >
+      {children}
+    </Flex>
   )
 }
 

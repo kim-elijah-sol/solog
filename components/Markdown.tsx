@@ -133,6 +133,15 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
     text-decoration: none;
     color: ${staticColor.primary_800};
   }
+
+  hr {
+    border: none;
+    width: 100%;
+    height: 2px;
+    background-color: ${(props) => props.themeColor.text_500};
+    transition: ${transition.fast};
+    margin: 1rem 0;
+  }
 `
 
 const codeBlock = (color: ThemeColor) => {
