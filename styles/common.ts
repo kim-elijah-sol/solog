@@ -153,3 +153,7 @@ export const circle = (size: number | string) => css`
 export const pointer = css`
   cursor: pointer;
 `
+
+export const eResize = css`
+  cursor: e-resize;
+`

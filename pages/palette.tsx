@@ -265,7 +265,11 @@ function Palette() {
           onChange={onChange}
         >
           {라이브러리.map(({ id, name }) => (
-            <Dropdown.Option value={id} checked={selected.includes(id)}>
+            <Dropdown.Option
+              key={id}
+              value={id}
+              checked={selected.includes(id)}
+            >
               {name}
             </Dropdown.Option>
           ))}
@@ -280,6 +284,7 @@ function Palette() {
         >
           {라이브러리.map(({ id, name }) => (
             <Radio
+              key={id}
               id={id.toString()}
               name='lib'
               checked={selectLib === id.toString()}

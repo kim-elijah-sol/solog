@@ -5,6 +5,7 @@ import React, { ClassAttributes, HTMLAttributes } from 'react'
 import $title from '@atoms/workroom/title'
 import $content from '@atoms/workroom/content'
 
+import If from '@components/If'
 import Seo from '@components/Seo'
 import Flex from '@components/layout/Flex'
 import Spacing from '@components/layout/Spacing'
@@ -15,12 +16,16 @@ import useDivisionPosition from '@hooks/workroom/useDivisionPosition'
 
 import transition from '@styles/transition'
 import { opacity } from '@styles/palette'
-import { thinScrollBar } from '@styles/common'
+import { eResize, thinScrollBar } from '@styles/common'
 
 function Workroom() {
   const content = useRecoilValue($content)
 
   const { divisionPosition, allowMove, moveAllow } = useDivisionPosition()
+
+  const containerStyle = css`
+    height: calc(100vh - 64px);
+  `
 
   return (
     <>
@@ -28,11 +33,7 @@ function Workroom() {
         <title>글 쓰기</title>
       </Seo>
 
-      <Flex
-        css={css`
-          height: calc(100vh - 64px);
-        `}
-      >
+      <Flex css={containerStyle}>
         <Left divisionPosition={divisionPosition}>
           <TopSpacing />
           <TitleInput />
@@ -48,14 +49,12 @@ function Workroom() {
           <Markdown>{content}</Markdown>
         </Right>
       </Flex>
-      {moveAllow && (
-        <FixedBackground
-          zIndex={99}
-          css={css`
-            cursor: e-resize;
-          `}
-        />
-      )}
+
+      <If condition={moveAllow}>
+        <If.Then>
+          <FixedBackground zIndex={99} css={eResize} />
+        </If.Then>
+      </If>
     </>
   )
 }
@@ -70,42 +69,52 @@ type DivisionProps = ClassAttributes<HTMLDivElement> &
 function Division({ moveAllow, ...props }: Omit<DivisionProps, 'children'>) {
   const { color } = useTheme()
 
+  const style = css`
+    width: 3px;
+    height: 100%;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -2px;
+      right: -2px;
+      pointer-events: none;
+      transition: ${transition.fast};
+
+      ${moveAllow
+        ? `
+        background-color: ${opacity({
+          color: color.text_300,
+          opacity: 0.7,
+        })};
+      `
+        : ''}
+    }
+
+    &:hover::after {
+      background-color: ${opacity({
+        color: color.text_300,
+        opacity: 0.7,
+      })};
+    }
+  `
+
+  const moveAllowStyle = css`
+    &::after {
+      background-color: ${opacity({
+        color: color.text_300,
+        opacity: 0.7,
+      })};
+    }
+  `
+
   return (
     <div
       {...props}
-      css={css`
-        width: 3px;
-        height: 100%;
-        cursor: e-resize;
-        position: relative;
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: -2px;
-          right: -2px;
-          pointer-events: none;
-          transition: ${transition.fast};
-
-          ${moveAllow
-            ? `
-            background-color: ${opacity({
-              color: color.text_300,
-              opacity: 0.7,
-            })};
-          `
-            : ''}
-        }
-
-        &:hover::after {
-          background-color: ${opacity({
-            color: color.text_300,
-            opacity: 0.7,
-          })};
-        }
-      `}
+      css={[style, eResize, moveAllow ? moveAllowStyle : undefined]}
     />
   )
 }
