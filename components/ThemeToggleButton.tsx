@@ -46,7 +46,9 @@ function ThemeToggleButton() {
               position: absolute;
               right: ${eclipsePosition}px;
               top: ${eclipsePosition}px;
-              transition: ${transition.fast};
+              transform: rotate(0.001deg);
+              transition: all ${transition.slow},
+                background-color ${transition.fast};
             `,
           ]}
         />
@@ -72,6 +74,8 @@ const flareEndPoint = 100 - flareStartPoint
 function Flare({ rotate }: FlareProps) {
   const { color } = useTheme()
 
+  const additionalRotate = color.type === 'light' ? 0 : 90
+
   return (
     <div
       css={css`
@@ -80,8 +84,9 @@ function Flare({ rotate }: FlareProps) {
         position: absolute;
         left: 50%;
         top: 50%;
-        transition: ${transition.fast};
-        transform: translate(-50%, -50%) rotate(${rotate}deg);
+        transition: color ${transition.fast}, transform ${transition.slow},
+          width ${transition.slow};
+        transform: translate(-50%, -50%) rotate(${rotate + additionalRotate}deg);
         background: linear-gradient(
           90deg,
           ${color.text_900} ${flareStartPoint}%,
