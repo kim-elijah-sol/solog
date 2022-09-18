@@ -1,4 +1,4 @@
-function Spacing({ size }: { size: number }) {
+function Spacing({ size }: { size: number | string }) {
   return (
     <div
       style={{

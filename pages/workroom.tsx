@@ -1,55 +1,26 @@
-import FixedBackground from '@components/FixedBackground'
-import Flex from '@components/layout/Flex'
-import Markdown from '@components/Markdown'
-import Seo from '@components/Seo'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { css, Interpolation, Theme, useTheme } from '@emotion/react'
-import useIsMount from '@hooks/global/useIsMount'
-import { thinScrollBar } from '@styles/common'
-import { opacity } from '@styles/palette'
+import React, { ClassAttributes, HTMLAttributes } from 'react'
+
+import $title from '@atoms/workroom/title'
+import $content from '@atoms/workroom/content'
+
+import Seo from '@components/Seo'
+import Flex from '@components/layout/Flex'
+import Spacing from '@components/layout/Spacing'
+import Markdown from '@components/Markdown'
+import FixedBackground from '@components/FixedBackground'
+
+import useDivisionPosition from '@hooks/workroom/useDivisionPosition'
+
 import transition from '@styles/transition'
-import { ClassAttributes, HTMLAttributes, useEffect, useState } from 'react'
+import { opacity } from '@styles/palette'
+import { thinScrollBar } from '@styles/common'
 
 function Workroom() {
-  const { color } = useTheme()
+  const content = useRecoilValue($content)
 
-  const { isMount } = useIsMount()
-
-  const [content, setContent] = useState('')
-
-  const [divisionPosition, setDivisionPosition] = useState(50)
-
-  const [moveAllow, setMoveAllow] = useState(false)
-
-  function onClickDivision() {
-    setMoveAllow(true)
-  }
-
-  function onMouseUp() {
-    setMoveAllow(false)
-  }
-
-  function onMouseMove(event: MouseEvent) {
-    if (moveAllow) {
-      let position = (event.clientX / window.innerWidth) * 100
-
-      if (position < 35) position = 35
-      else if (position > 65) position = 65
-
-      setDivisionPosition(position)
-    }
-  }
-
-  useEffect(() => {
-    if (isMount) {
-      window.addEventListener('mouseup', onMouseUp)
-      window.addEventListener('mousemove', onMouseMove)
-
-      return () => {
-        window.removeEventListener('mouseup', onMouseUp)
-        window.removeEventListener('mousemove', onMouseMove)
-      }
-    }
-  }, [isMount, moveAllow])
+  const { divisionPosition, allowMove, moveAllow } = useDivisionPosition()
 
   return (
     <>
@@ -62,11 +33,18 @@ function Workroom() {
           height: calc(100vh - 64px);
         `}
       >
-        <Left divisionPosition={divisionPosition}></Left>
+        <Left divisionPosition={divisionPosition}>
+          <TopSpacing />
+          <TitleInput />
+          <BottomSpacing />
+        </Left>
 
-        <Division onMouseDown={onClickDivision} moveAllow={moveAllow} />
+        <Division onMouseDown={allowMove} moveAllow={moveAllow} />
 
         <Right divisionPosition={divisionPosition}>
+          <TopSpacing />
+          <TitlePreview />
+          <BottomSpacing />
           <Markdown>{content}</Markdown>
         </Right>
       </Flex>
@@ -140,15 +118,46 @@ interface WrapperProps {
 function Left({ divisionPosition, children }: WrapperProps) {
   const { color } = useTheme()
 
+  const outerStyle = css`
+    background-color: ${color.text_100};
+    transition: background-color ${transition.fast};
+  `
+
+  const innerStyle = css`
+    width: calc(100% - 48px);
+    margin: 0 auto;
+    height: 100%;
+  `
+
+  return (
+    <div
+      css={outerStyle}
+      style={{
+        flex: divisionPosition,
+      }}
+    >
+      <Flex column css={innerStyle}>
+        {children}
+      </Flex>
+    </div>
+  )
+}
+
+function Right({ divisionPosition, children }: WrapperProps) {
+  const { color } = useTheme()
+
+  const style = css`
+    max-height: 100%;
+    overflow-y: auto;
+    padding-bottom: 32px;
+  `
+
   return (
     <Flex
       column
-      css={css`
-        background-color: ${color.text_100};
-        transition: background-color ${transition.fast};
-      `}
+      css={[thinScrollBar(color.text_400), style]}
       style={{
-        flex: divisionPosition,
+        flex: 100 - divisionPosition,
       }}
     >
       {children}
@@ -156,26 +165,59 @@ function Left({ divisionPosition, children }: WrapperProps) {
   )
 }
 
-function Right({ divisionPosition, children }: WrapperProps) {
+function TopSpacing() {
+  return <Spacing size='2.75rem' />
+}
+
+function BottomSpacing() {
+  return <Spacing size='1rem' />
+}
+
+function TitlePreview() {
   const { color } = useTheme()
 
+  const title = useRecoilValue($title)
+
+  const style = css`
+    color: ${color.text_900};
+    font-size: 2.75rem;
+    width: calc(100% - 32px);
+    max-width: 648px;
+    margin: 0 auto;
+    transition: ${transition.fast};
+  `
+
+  return <h1 css={style}>{title}</h1>
+}
+
+function TitleInput() {
+  const { color } = useTheme()
+
+  const [title, setTitle] = useRecoilState($title)
+
+  function onChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
+    setTitle(e.target.value)
+  }
+
+  const style = css`
+    color: ${color.text_900};
+    font-size: 2.75rem;
+    font-weight: bold;
+    transition: ${transition.fast};
+
+    &::placeholder {
+      color: ${color.text_200};
+    }
+  `
+
   return (
-    <Flex
-      column
-      css={[
-        thinScrollBar(color.text_400),
-        css`
-          max-height: 100%;
-          overflow-y: auto;
-          padding-bottom: 32px;
-        `,
-      ]}
-      style={{
-        flex: 100 - divisionPosition,
-      }}
-    >
-      {children}
-    </Flex>
+    <input
+      type='text'
+      value={title}
+      onChange={onChangeTitle}
+      css={style}
+      placeholder='제목을 입력해주세요.'
+    />
   )
 }
 
