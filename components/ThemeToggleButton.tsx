@@ -2,6 +2,7 @@ import $theme from '@atoms/global/theme'
 import { css, useTheme } from '@emotion/react'
 import { circle, pointer, square } from '@styles/common'
 import transition from '@styles/transition'
+import { ComponentProps, ReactElement } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 const buttonStyle = css`
@@ -13,46 +14,20 @@ const buttonStyle = css`
 `
 
 function ThemeToggleButton() {
-  const { color } = useTheme()
-
   const setTheme = useSetRecoilState($theme)
 
   function onClickThemeToggle() {
     setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
   }
 
-  const eclipsePosition = color.type === 'dark' ? 5 : -5
-
   return (
     <button
       css={[buttonStyle, pointer, square(36)]}
       onClick={onClickThemeToggle}
     >
-      <div
-        css={[
-          circle(color.type === 'dark' ? 24 : 12),
-          css`
-            background-color: ${color.text_900};
-            transition: ${transition.fast};
-          `,
-        ]}
-      >
-        <div
-          css={[
-            circle(16),
-            css`
-              position: absolute;
-              background-color: ${color.background};
-              position: absolute;
-              right: ${eclipsePosition}px;
-              top: ${eclipsePosition}px;
-              transform: rotate(0.001deg);
-              transition: all ${transition.slow},
-                background-color ${transition.fast};
-            `,
-          ]}
-        />
-      </div>
+      <Circle>
+        <Eclipse />
+      </Circle>
 
       {Array(4)
         .fill(0)
@@ -60,6 +35,52 @@ function ThemeToggleButton() {
           return <Flare rotate={index * 45} key={index} />
         })}
     </button>
+  )
+}
+
+interface CircleProps {
+  children: ReactElement<ComponentProps<typeof Eclipse>>
+}
+
+function Circle({ children }: CircleProps) {
+  const { color } = useTheme()
+
+  return (
+    <div
+      css={[
+        circle(color.type === 'dark' ? 24 : 12),
+        css`
+          background-color: ${color.text_900};
+          transition: ${transition.fast};
+        `,
+      ]}
+    >
+      {children}
+    </div>
+  )
+}
+
+function Eclipse() {
+  const { color } = useTheme()
+
+  const eclipsePosition = color.type === 'dark' ? 5 : -5
+
+  return (
+    <div
+      css={[
+        circle(16),
+        css`
+          position: absolute;
+          background-color: ${color.background};
+          position: absolute;
+          right: ${eclipsePosition}px;
+          top: ${eclipsePosition}px;
+          transform: rotate(0.001deg);
+          transition: all ${transition.slow},
+            background-color ${transition.fast};
+        `,
+      ]}
+    />
   )
 }
 
