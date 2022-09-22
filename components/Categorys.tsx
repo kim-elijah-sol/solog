@@ -1,24 +1,18 @@
 import { css, useTheme } from '@emotion/react'
-import { getDuplicates } from '@shared/function'
 
 import Flex from './layout/Flex'
 
 import transition from '@styles/transition'
 import { opacity, staticColor } from '@styles/palette'
+import { ComponentProps, ReactElement } from 'react'
 
-export type OnClickParam = {
-  category: string
-  index: number
-}
-
-export type CategoryOnClickEvent = (param: OnClickParam) => void
+type ItemElement = ReactElement<ComponentProps<typeof Item>>
 
 interface Props {
-  categorys: string[]
-  onClick?: CategoryOnClickEvent
+  children: ItemElement | ItemElement[]
 }
 
-function Categorys({ categorys, onClick }: Props) {
+function Categorys({ children }: Props) {
   const style = css`
     width: calc(100% - 32px);
     max-width: 648px;
@@ -27,39 +21,16 @@ function Categorys({ categorys, onClick }: Props) {
     flex-wrap: wrap;
   `
 
-  const duplicateCategorys = getDuplicates(categorys)
-
-  function innerOnClick(param: OnClickParam) {
-    if (onClick) onClick(param)
-  }
-
-  return (
-    <Flex css={style}>
-      {categorys.map((category, index) => (
-        <Category
-          key={index}
-          isDuplicated={duplicateCategorys.includes(category)}
-          onClick={() =>
-            innerOnClick({
-              category,
-              index,
-            })
-          }
-        >
-          {category}
-        </Category>
-      ))}
-    </Flex>
-  )
+  return <Flex css={style}>{children}</Flex>
 }
 
-interface CategoryProps {
+interface ItemProps {
   children: string
-  isDuplicated: boolean
-  onClick: React.MouseEventHandler<HTMLDivElement>
+  isDuplicated?: boolean
+  onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
-function Category({ children, isDuplicated, onClick }: CategoryProps) {
+function Item({ children, isDuplicated, onClick }: ItemProps) {
   const { color } = useTheme()
 
   const outSideColor = isDuplicated
@@ -103,5 +74,7 @@ function Category({ children, isDuplicated, onClick }: CategoryProps) {
     </div>
   )
 }
+
+Categorys.Item = Item
 
 export default Categorys

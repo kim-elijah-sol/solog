@@ -13,16 +13,17 @@ import Flex from '@components/layout/Flex'
 import Title from '@components/Title'
 import Spacing from '@components/layout/Spacing'
 import Markdown from '@components/Markdown'
+import Categorys from '@components/Categorys'
 import TitleInput from '@components/TitleInput'
 import CategorysInput from '@components/CategorysInput'
 import FixedBackground from '@components/FixedBackground'
-import Categorys, { OnClickParam } from '@components/Categorys'
 
 import useDivisionPosition from '@hooks/workroom/useDivisionPosition'
 
 import transition from '@styles/transition'
 import { opacity } from '@styles/palette'
 import { eResize, thinScrollBar } from '@styles/common'
+import { getDuplicates } from '@shared/function'
 
 function Workroom() {
   const title = useRecoilValue($title)
@@ -31,7 +32,9 @@ function Workroom() {
 
   const categorys = useRecoilValue($categorys)
 
-  const [cagegory, setCategory] = useRecoilState($category)
+  const duplicateCategorys = getDuplicates(categorys)
+
+  const [category, setCategory] = useRecoilState($category)
 
   const { divisionPosition, allowMove, moveAllow } = useDivisionPosition()
 
@@ -39,9 +42,9 @@ function Workroom() {
     height: calc(100vh - 64px);
   `
 
-  function onClick({ index }: OnClickParam) {
+  function onClickCategory(index: number) {
     setCategory(
-      cagegory
+      category
         .split(',')
         .filter((_, _index) => index !== _index)
         .join(',')
@@ -68,7 +71,17 @@ function Workroom() {
           <TopSpacing />
           <Title>{title}</Title>
           <BottomSpacing />
-          <Categorys categorys={categorys} onClick={onClick} />
+          <Categorys>
+            {categorys.map((category, index) => (
+              <Categorys.Item
+                key={index}
+                isDuplicated={duplicateCategorys.includes(category)}
+                onClick={() => onClickCategory(index)}
+              >
+                {category}
+              </Categorys.Item>
+            ))}
+          </Categorys>
           <BottomSpacing />
           <Markdown>{content}</Markdown>
         </Right>
