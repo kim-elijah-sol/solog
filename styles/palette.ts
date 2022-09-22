@@ -44,7 +44,7 @@ export const staticColor = {
   primary_600: '#668adc',
   primary_700: '#5e77c8',
   primary_800: '#5766b5',
-  primary_900: '#494896',
+  primary_900: '#5352ad',
 
   red_50: '#feebf0',
   red_100: '#fecdd7',

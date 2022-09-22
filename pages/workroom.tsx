@@ -4,6 +4,8 @@ import React, { ClassAttributes, HTMLAttributes } from 'react'
 
 import $title from '@atoms/workroom/title'
 import $content from '@atoms/workroom/content'
+import $category from '@atoms/workroom/category'
+import $categorys from '@atoms/workroom/categorys'
 
 import If from '@components/If'
 import Seo from '@components/Seo'
@@ -12,24 +14,37 @@ import Title from '@components/Title'
 import Spacing from '@components/layout/Spacing'
 import Markdown from '@components/Markdown'
 import FixedBackground from '@components/FixedBackground'
+import Categorys, { OnClickParam } from '@components/Categorys'
 
 import useDivisionPosition from '@hooks/workroom/useDivisionPosition'
 
 import transition from '@styles/transition'
 import { opacity } from '@styles/palette'
 import { eResize, thinScrollBar } from '@styles/common'
-import $category from '@atoms/workroom/category'
 
 function Workroom() {
   const title = useRecoilValue($title)
 
   const content = useRecoilValue($content)
 
+  const categorys = useRecoilValue($categorys)
+
+  const [cagegory, setCategory] = useRecoilState($category)
+
   const { divisionPosition, allowMove, moveAllow } = useDivisionPosition()
 
   const containerStyle = css`
     height: calc(100vh - 64px);
   `
+
+  function onClick({ index }: OnClickParam) {
+    setCategory(
+      cagegory
+        .split(',')
+        .filter((_, _index) => index !== _index)
+        .join(',')
+    )
+  }
 
   return (
     <>
@@ -50,6 +65,8 @@ function Workroom() {
         <Right divisionPosition={divisionPosition}>
           <TopSpacing />
           <Title>{title}</Title>
+          <BottomSpacing />
+          <Categorys categorys={categorys} onClick={onClick} />
           <BottomSpacing />
           <Markdown>{content}</Markdown>
         </Right>
