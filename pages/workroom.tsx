@@ -13,6 +13,8 @@ import Flex from '@components/layout/Flex'
 import Title from '@components/Title'
 import Spacing from '@components/layout/Spacing'
 import Markdown from '@components/Markdown'
+import TitleInput from '@components/TitleInput'
+import CategorysInput from '@components/CategorysInput'
 import FixedBackground from '@components/FixedBackground'
 import Categorys, { OnClickParam } from '@components/Categorys'
 
@@ -57,7 +59,7 @@ function Workroom() {
           <TopSpacing />
           <TitleInput />
           <BottomSpacing />
-          <CategoryInput />
+          <CategorysInput />
         </Left>
 
         <Division onMouseDown={allowMove} moveAllow={moveAllow} />
@@ -202,67 +204,6 @@ function TopSpacing() {
 
 function BottomSpacing() {
   return <Spacing size='2rem' />
-}
-
-function TitleInput() {
-  const { color } = useTheme()
-
-  const [title, setTitle] = useRecoilState($title)
-
-  function onChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
-    setTitle(e.target.value)
-  }
-
-  const style = css`
-    color: ${color.text_900};
-    font-size: 2.75rem;
-    font-weight: bold;
-    transition: ${transition.fast};
-
-    &::placeholder {
-      color: ${color.text_200};
-    }
-  `
-
-  return (
-    <input
-      type='text'
-      value={title}
-      onChange={onChangeTitle}
-      css={style}
-      placeholder='제목을 입력해주세요.'
-    />
-  )
-}
-
-function CategoryInput() {
-  const { color } = useTheme()
-
-  const [category, setCategory] = useRecoilState($category)
-
-  const style = css`
-    color: ${color.text_900};
-    font-size: 1.25rem;
-    transition: ${transition.fast};
-
-    &::placeholder {
-      color: ${color.text_200};
-    }
-  `
-
-  function onChangeCategory(e: React.ChangeEvent<HTMLInputElement>) {
-    setCategory(e.target.value)
-  }
-
-  return (
-    <input
-      type='text'
-      value={category}
-      onChange={onChangeCategory}
-      css={style}
-      placeholder={`카테고리를 입력해주세요. (',' 자로 구분)`}
-    />
-  )
 }
 
 export default Workroom
