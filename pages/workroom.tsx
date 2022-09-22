@@ -5,7 +5,7 @@ import React, { ClassAttributes, HTMLAttributes } from 'react'
 import $title from '@atoms/workroom/title'
 import $content from '@atoms/workroom/content'
 import $category from '@atoms/workroom/category'
-import $categorys from '@atoms/workroom/categorys'
+import $categorys from '@selectors/workroom/categorys'
 
 import If from '@components/If'
 import Seo from '@components/Seo'
@@ -23,7 +23,8 @@ import useDivisionPosition from '@hooks/workroom/useDivisionPosition'
 import transition from '@styles/transition'
 import { opacity } from '@styles/palette'
 import { eResize, thinScrollBar } from '@styles/common'
-import { getDuplicates } from '@shared/function'
+import $duplicateCategorys from '@selectors/workroom/duplicateCategorys'
+import useWatchDuplicateCategorys from '@hooks/workroom/useWatchDuplicateCategorys'
 
 function Workroom() {
   const title = useRecoilValue($title)
@@ -32,7 +33,7 @@ function Workroom() {
 
   const categorys = useRecoilValue($categorys)
 
-  const duplicateCategorys = getDuplicates(categorys)
+  const duplicateCategorys = useRecoilValue($duplicateCategorys)
 
   const [category, setCategory] = useRecoilState($category)
 
@@ -50,6 +51,8 @@ function Workroom() {
         .join(',')
     )
   }
+
+  useWatchDuplicateCategorys()
 
   return (
     <>

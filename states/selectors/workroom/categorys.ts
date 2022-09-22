@@ -1,5 +1,6 @@
 import { selector } from 'recoil'
-import $category from './category'
+
+import $category from '../../atoms/workroom/category'
 
 const $categorys = selector({
   key: '@workroom/categorys',
