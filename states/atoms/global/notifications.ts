@@ -1,8 +1,11 @@
 import { atom } from 'recoil'
 
+type Type = 'error' | 'notice'
+
 export interface Notification {
   key: string
-  content: string
+  type: Type
+  content: React.ReactNode
   isExpired: boolean
   expiredTime: number
 }

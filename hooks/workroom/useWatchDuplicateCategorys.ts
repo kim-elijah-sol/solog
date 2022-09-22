@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react'
 
 import useNotification from '@hooks/global/useNotification'
 import $duplicateCategorys from '@selectors/workroom/duplicateCategorys'
-import { NOTIFICATION_AGE } from '@shared/constant'
 
 function useWatchDuplicateCategorys() {
   const { notice, update } = useNotification()
@@ -16,31 +15,25 @@ function useWatchDuplicateCategorys() {
     if (!notSolvedCategorys.current.includes(category)) {
       notice({
         key: `@중복카테고리/${category}`,
-        content: category,
+        type: 'error',
+        content: `"${category}" 카테고리가 중복 입력 되었습니다.`,
       })
 
-      setTimeout(() => {
-        update(`@중복카테고리/${category}`)
-      }, 2500)
-
-      notSolvedCategoryPushPop(category)
+      notSolvedCategorys.current.push(category)
     }
   }
 
-  function notSolvedCategoryPushPop(category: string) {
-    notSolvedCategorys.current.push(category)
-
-    setTimeout(() => {
-      notSolvedCategorys.current = notSolvedCategorys.current.filter(
-        (_category) => _category !== category
-      )
-    }, NOTIFICATION_AGE)
+  function solvingCategoryPop() {
+    notSolvedCategorys.current = notSolvedCategorys.current.filter((category) =>
+      duplicateCategorys.includes(category)
+    )
   }
 
   useEffect(() => {
     for (const category of duplicateCategorys) {
       noticeDuplicateCategory(category)
     }
+    solvingCategoryPop()
   }, [duplicateCategorys])
 }
 

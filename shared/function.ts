@@ -33,3 +33,13 @@ export function getDuplicates<T>(array: T[]): T[] {
       return acc
     }, [])
 }
+
+export function scaleForDomain(domain: [number, number], value: number) {
+  const [min, max] = domain
+
+  const gap = max - min
+
+  const scale = value / max
+
+  return min + gap * scale
+}
