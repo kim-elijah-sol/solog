@@ -182,7 +182,7 @@ function Left({ divisionPosition, children }: WrapperProps) {
     <div
       css={outerStyle}
       style={{
-        flex: divisionPosition,
+        width: `${divisionPosition}%`,
       }}
     >
       <Flex column css={innerStyle}>
@@ -206,7 +206,7 @@ function Right({ divisionPosition, children }: WrapperProps) {
       column
       css={[thinScrollBar(color.text_400), style]}
       style={{
-        flex: 100 - divisionPosition,
+        width: `${100 - divisionPosition}%`,
       }}
     >
       {children}

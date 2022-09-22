@@ -120,6 +120,7 @@ function Card({
   `
 
   const dotStyle = css`
+    position: absolute;
     left: 8px;
     top: 8px;
     background-color: ${type === 'error'
