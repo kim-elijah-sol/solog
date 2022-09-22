@@ -2,15 +2,28 @@ import { useRecoilValue } from 'recoil'
 import { useEffect, useRef } from 'react'
 
 import $duplicateCategorys from '@selectors/workroom/duplicateCategorys'
+import $notifications from '@atoms/global/notifications'
+import useNotification from '@hooks/global/useNotification'
 
 function useWatchDuplicateCategorys() {
+  const notifications = useRecoilValue($notifications)
+
+  const { notice, update } = useNotification()
+
   const notSolvedCategorys = useRef<string[]>([])
 
   const duplicateCategorys = useRecoilValue($duplicateCategorys)
 
-  function notice(category: string) {
+  function noticeDuplicateCategory(category: string) {
     if (!notSolvedCategorys.current.includes(category)) {
-      console.log(category, new Date().valueOf())
+      notice({
+        key: `@중복카테고리/${category}`,
+        content: category,
+      })
+
+      setTimeout(() => {
+        update(`@중복카테고리/${category}`)
+      }, 2500)
 
       notSolvedCategoryPushPop(category)
     }
@@ -28,9 +41,13 @@ function useWatchDuplicateCategorys() {
 
   useEffect(() => {
     for (const category of duplicateCategorys) {
-      notice(category)
+      noticeDuplicateCategory(category)
     }
   }, [duplicateCategorys])
+
+  useEffect(() => {
+    console.log(notifications)
+  }, [notifications])
 }
 
 export default useWatchDuplicateCategorys
