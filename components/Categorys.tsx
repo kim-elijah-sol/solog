@@ -1,4 +1,5 @@
 import { css, useTheme } from '@emotion/react'
+import { getDuplicates } from '@shared/function'
 import { opacity, staticColor } from '@styles/palette'
 import transition from '@styles/transition'
 import Flex from './layout/Flex'
@@ -24,6 +25,8 @@ function Categorys({ categorys, onClick }: Props) {
     flex-wrap: wrap;
   `
 
+  const duplicateCategorys = getDuplicates(categorys)
+
   function innerOnClick(param: OnClickParam) {
     if (onClick) onClick(param)
   }
@@ -33,6 +36,7 @@ function Categorys({ categorys, onClick }: Props) {
       {categorys.map((category, index) => (
         <Category
           key={index}
+          isDuplicated={duplicateCategorys.includes(category)}
           onClick={() =>
             innerOnClick({
               category,
@@ -49,17 +53,26 @@ function Categorys({ categorys, onClick }: Props) {
 
 interface CategoryProps {
   children: string
-  onClick?: React.MouseEventHandler<HTMLDivElement>
+  isDuplicated: boolean
+  onClick: React.MouseEventHandler<HTMLDivElement>
 }
 
-function Category({ children, onClick }: CategoryProps) {
+function Category({ children, isDuplicated, onClick }: CategoryProps) {
   const { color } = useTheme()
+
+  const outSideColor = isDuplicated
+    ? staticColor.red_700
+    : staticColor.primary_700
+
+  const inSideColor = isDuplicated
+    ? staticColor.red_600
+    : staticColor.primary_700
 
   const style = css`
     color: ${color.text_900};
     transition: ${transition.fast};
     padding: 0 12px;
-    background-color: ${staticColor.primary_700};
+    background-color: ${outSideColor};
     font-size: 1.25rem;
     height: 32px;
     line-height: 32px;
@@ -71,17 +84,19 @@ function Category({ children, onClick }: CategoryProps) {
 
     &:hover {
       background-color: ${opacity({
-        color: staticColor.primary_600,
+        color: inSideColor,
         opacity: 0.4,
       })};
-      backdrop-filter: blur(4px);
       box-shadow: inset 0 0 0 ${1}px
         ${opacity({
-          color: staticColor.primary_700,
+          color: outSideColor,
           opacity: 0.7,
         })};
+      backdrop-filter: blur(4px);
     }
   `
+
+  console.log(children, isDuplicated)
 
   return (
     <div css={style} onClick={onClick}>
