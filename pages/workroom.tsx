@@ -8,6 +8,7 @@ import $content from '@atoms/workroom/content'
 import If from '@components/If'
 import Seo from '@components/Seo'
 import Flex from '@components/layout/Flex'
+import Title from '@components/Title'
 import Spacing from '@components/layout/Spacing'
 import Markdown from '@components/Markdown'
 import FixedBackground from '@components/FixedBackground'
@@ -17,8 +18,11 @@ import useDivisionPosition from '@hooks/workroom/useDivisionPosition'
 import transition from '@styles/transition'
 import { opacity } from '@styles/palette'
 import { eResize, thinScrollBar } from '@styles/common'
+import $category from '@atoms/workroom/category'
 
 function Workroom() {
+  const title = useRecoilValue($title)
+
   const content = useRecoilValue($content)
 
   const { divisionPosition, allowMove, moveAllow } = useDivisionPosition()
@@ -38,13 +42,14 @@ function Workroom() {
           <TopSpacing />
           <TitleInput />
           <BottomSpacing />
+          <CategoryInput />
         </Left>
 
         <Division onMouseDown={allowMove} moveAllow={moveAllow} />
 
         <Right divisionPosition={divisionPosition}>
           <TopSpacing />
-          <TitlePreview />
+          <Title>{title}</Title>
           <BottomSpacing />
           <Markdown>{content}</Markdown>
         </Right>
@@ -175,28 +180,11 @@ function Right({ divisionPosition, children }: WrapperProps) {
 }
 
 function TopSpacing() {
-  return <Spacing size='2.75rem' />
+  return <Spacing size='3rem' />
 }
 
 function BottomSpacing() {
-  return <Spacing size='1rem' />
-}
-
-function TitlePreview() {
-  const { color } = useTheme()
-
-  const title = useRecoilValue($title)
-
-  const style = css`
-    color: ${color.text_900};
-    font-size: 2.75rem;
-    width: calc(100% - 32px);
-    max-width: 648px;
-    margin: 0 auto;
-    transition: ${transition.fast};
-  `
-
-  return <h1 css={style}>{title}</h1>
+  return <Spacing size='2rem' />
 }
 
 function TitleInput() {
@@ -226,6 +214,36 @@ function TitleInput() {
       onChange={onChangeTitle}
       css={style}
       placeholder='제목을 입력해주세요.'
+    />
+  )
+}
+
+function CategoryInput() {
+  const { color } = useTheme()
+
+  const [category, setCategory] = useRecoilState($category)
+
+  const style = css`
+    color: ${color.text_900};
+    font-size: 1.25rem;
+    transition: ${transition.fast};
+
+    &::placeholder {
+      color: ${color.text_200};
+    }
+  `
+
+  function onChangeCategory(e: React.ChangeEvent<HTMLInputElement>) {
+    setCategory(e.target.value)
+  }
+
+  return (
+    <input
+      type='text'
+      value={category}
+      onChange={onChangeCategory}
+      css={style}
+      placeholder={`카테고리를 입력해주세요. (',' 자로 구분)`}
     />
   )
 }
