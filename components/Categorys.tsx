@@ -1,8 +1,10 @@
 import { css, useTheme } from '@emotion/react'
 import { getDuplicates } from '@shared/function'
-import { opacity, staticColor } from '@styles/palette'
-import transition from '@styles/transition'
+
 import Flex from './layout/Flex'
+
+import transition from '@styles/transition'
+import { opacity, staticColor } from '@styles/palette'
 
 export type OnClickParam = {
   category: string
@@ -61,15 +63,15 @@ function Category({ children, isDuplicated, onClick }: CategoryProps) {
   const { color } = useTheme()
 
   const outSideColor = isDuplicated
-    ? staticColor.red_700
-    : staticColor.primary_700
+    ? staticColor.red_900
+    : staticColor.primary_900
 
   const inSideColor = isDuplicated
     ? staticColor.red_600
-    : staticColor.primary_700
+    : staticColor.primary_600
 
   const style = css`
-    color: ${color.text_900};
+    color: white;
     transition: ${transition.fast};
     padding: 0 12px;
     background-color: ${outSideColor};
@@ -77,7 +79,6 @@ function Category({ children, isDuplicated, onClick }: CategoryProps) {
     height: 32px;
     line-height: 32px;
     border-radius: 16px;
-    color: ${color.text_900};
     cursor: pointer;
     transform: rotate(0.001deg);
     white-space: nowrap;
@@ -85,7 +86,7 @@ function Category({ children, isDuplicated, onClick }: CategoryProps) {
     &:hover {
       background-color: ${opacity({
         color: inSideColor,
-        opacity: 0.4,
+        opacity: color.type === 'light' ? 0.5 : 0.3,
       })};
       box-shadow: inset 0 0 0 ${1}px
         ${opacity({
@@ -95,8 +96,6 @@ function Category({ children, isDuplicated, onClick }: CategoryProps) {
       backdrop-filter: blur(4px);
     }
   `
-
-  console.log(children, isDuplicated)
 
   return (
     <div css={style} onClick={onClick}>
