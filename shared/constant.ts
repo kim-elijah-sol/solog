@@ -1,0 +1,1 @@
+export const NOTIFICATION_AGE = 3000

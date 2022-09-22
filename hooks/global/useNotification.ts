@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-
+import { NOTIFICATION_AGE } from '@shared/constant'
 import $notification, { Notification } from '@atoms/global/notifications'
 
 function useNotification() {
@@ -21,7 +21,7 @@ function useNotification() {
 
     const schedule = setTimeout(() => {
       hide(param.key)
-    }, 3000)
+    }, NOTIFICATION_AGE)
 
     schedules[param.key] = schedule
   }
@@ -35,7 +35,7 @@ function useNotification() {
 
         return {
           ...notification,
-          expiredTime: notification.expiredTime + 3000,
+          expiredTime: notification.expiredTime + NOTIFICATION_AGE,
         }
       })
     )
@@ -50,7 +50,7 @@ function useNotification() {
 
     const schedule = setTimeout(() => {
       hide(key)
-    }, 3000)
+    }, NOTIFICATION_AGE)
 
     schedules[key] = schedule
   }
