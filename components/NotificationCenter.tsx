@@ -70,7 +70,7 @@ function Card({
   const begin = keyframes`
     0% {
       opacity: 0;
-      transform: scale(0.6) translateX(16px);
+      transform: scale(0.6) translateY(16px);
     }
 
     100% {
@@ -116,7 +116,7 @@ function Card({
 
   const expiredStyle = css`
     opacity: 0 !important;
-    transform: scale(0.6) translateX(8px) !important;
+    transform: scale(0.6) translateY(16px) !important;
   `
 
   const dotStyle = css`

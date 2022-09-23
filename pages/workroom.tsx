@@ -94,7 +94,7 @@ function Workroom() {
             ))}
           </Categorys>
           <Spacing size='2rem' />
-          <Markdown>{content}</Markdown>
+          <Markdown>{content.split('\n').join('<br/>')}</Markdown>
         </Right>
       </Flex>
 
