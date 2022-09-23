@@ -25,6 +25,7 @@ import { opacity } from '@styles/palette'
 import { eResize, thinScrollBar } from '@styles/common'
 import $duplicateCategorys from '@selectors/workroom/duplicateCategorys'
 import useWatchDuplicateCategorys from '@hooks/workroom/useWatchDuplicateCategorys'
+import Date from '@components/Date'
 
 function Workroom() {
   const title = useRecoilValue($title)
@@ -62,18 +63,20 @@ function Workroom() {
 
       <Flex css={containerStyle}>
         <Left divisionPosition={divisionPosition}>
-          <TopSpacing />
+          <Spacing size='3rem' />
           <TitleInput />
-          <BottomSpacing />
+          <Spacing size='2rem' />
           <CategorysInput />
         </Left>
 
         <Division onMouseDown={allowMove} moveAllow={moveAllow} />
 
         <Right divisionPosition={divisionPosition}>
-          <TopSpacing />
+          <Spacing size='3rem' />
           <Title>{title}</Title>
-          <BottomSpacing />
+          <Spacing size='2rem' />
+          <Date>2022년 09월 24일</Date>
+          <Spacing size='1rem' />
           <Categorys>
             {categorys.map((category, index) => (
               <Categorys.Item
@@ -85,7 +88,7 @@ function Workroom() {
               </Categorys.Item>
             ))}
           </Categorys>
-          <BottomSpacing />
+          <Spacing size='2rem' />
           <Markdown>{content}</Markdown>
         </Right>
       </Flex>
@@ -212,14 +215,6 @@ function Right({ divisionPosition, children }: WrapperProps) {
       {children}
     </Flex>
   )
-}
-
-function TopSpacing() {
-  return <Spacing size='3rem' />
-}
-
-function BottomSpacing() {
-  return <Spacing size='2rem' />
 }
 
 export default Workroom

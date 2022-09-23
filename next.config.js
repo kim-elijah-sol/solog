@@ -5,7 +5,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   webpack(config) {
-    return Object.assign(config, {
+    const _config = Object.assign(config, {
       resolve: {
         alias: {
           '@styles': path.resolve(__dirname, 'styles'),
@@ -14,6 +14,13 @@ const nextConfig = {
         ...config.resolve,
       },
     })
+
+    _config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
+
+    return _config
   },
 }
 
