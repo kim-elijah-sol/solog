@@ -1,6 +1,6 @@
 import { css, useTheme } from '@emotion/react'
 import transition from '@styles/transition'
-import Calendar from '../static/icons/calendar.svg'
+import Calendar from '@icons/calendar.svg'
 import Flex from './layout/Flex'
 
 interface Props {

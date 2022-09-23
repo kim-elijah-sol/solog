@@ -22,7 +22,8 @@
       "@shared/*": ["shared/*"],
       "@atoms/*": ["states/atoms/*"],
       "@selectors/*": ["states/selectors/*"],
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@icons/*": ["static/icons/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
