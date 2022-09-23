@@ -21,7 +21,7 @@ function TitleInput() {
     transition: ${transition.fast};
 
     &::placeholder {
-      color: ${color.text_200};
+      color: ${color.text_300};
     }
   `
 

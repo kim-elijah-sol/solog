@@ -26,6 +26,7 @@ import { eResize, thinScrollBar } from '@styles/common'
 import $duplicateCategorys from '@selectors/workroom/duplicateCategorys'
 import useWatchDuplicateCategorys from '@hooks/workroom/useWatchDuplicateCategorys'
 import Date from '@components/Date'
+import Editor from '@components/Editor'
 
 function Workroom() {
   const title = useRecoilValue($title)
@@ -67,6 +68,10 @@ function Workroom() {
           <TitleInput />
           <Spacing size='2rem' />
           <CategorysInput />
+          <Spacing size='2rem' />
+          <Left.Bottom>
+            <Editor />
+          </Left.Bottom>
         </Left>
 
         <Division onMouseDown={allowMove} moveAllow={moveAllow} />
@@ -171,7 +176,7 @@ function Left({ divisionPosition, children }: WrapperProps) {
   const { color } = useTheme()
 
   const outerStyle = css`
-    background-color: ${color.text_100};
+    background-color: ${color.text_50};
     transition: background-color ${transition.fast};
   `
 
@@ -212,6 +217,18 @@ function Right({ divisionPosition, children }: WrapperProps) {
         width: `${100 - divisionPosition}%`,
       }}
     >
+      {children}
+    </Flex>
+  )
+}
+
+Left.Bottom = function ({ children }: { children: React.ReactNode }) {
+  const style = css`
+    flex: 1;
+  `
+
+  return (
+    <Flex column css={style}>
       {children}
     </Flex>
   )
