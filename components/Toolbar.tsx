@@ -1,8 +1,8 @@
 import $content from '@atoms/workroom/content'
-import { css, useTheme } from '@emotion/react'
+import { css, Interpolation, Theme, useTheme } from '@emotion/react'
 import { pointer, square } from '@styles/common'
 import transition from '@styles/transition'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import Flex from './layout/Flex'
 
 import H2 from '@icons/h2.svg'
@@ -15,15 +15,112 @@ import Link from '@icons/link.svg'
 import Img from '@icons/img.svg'
 import Code from '@icons/code.svg'
 import NewLine from '@icons/new-line.svg'
+import { ClassAttributes, ButtonHTMLAttributes, useRef, useEffect } from 'react'
 
 interface Props {
   textarea: React.RefObject<HTMLTextAreaElement>
 }
 
+type SplitingContent = {
+  content: string
+  start: number
+  end: number
+}
+
 const size = '36px'
 
 function Toolbar({ textarea }: Props) {
-  const setContent = useSetRecoilState($content)
+  const [content, setContent] = useRecoilState($content)
+
+  const afterSelectionRange = useRef<[number, number]>([-1, -1])
+
+  function onClickHeading(heading: number) {
+    const headingSymbol = Array(heading).fill('#').join('') + ' '
+
+    const { selectionStart } = getSelection()
+
+    const contents = getSplitingContent()
+
+    const _afterSelectionRange = contents.reduce(
+      (acc: [number, number], content: SplitingContent) => {
+        if (selectionStart >= content.start && selectionStart <= content.end) {
+          const alreadyHeading = content.content.includes(headingSymbol)
+
+          const advantage = alreadyHeading ? -1 : 1
+
+          const selectionEnd = content.end + (heading + 1) * advantage
+
+          const next: [number, number] = [selectionEnd, selectionEnd]
+          return next
+        }
+
+        return acc
+      },
+      [-1, -1]
+    )
+
+    afterSelectionRange.current = _afterSelectionRange
+
+    const content = contents
+      .map((content) =>
+        selectionStart >= content.start && selectionStart <= content.end
+          ? content.content.includes(headingSymbol)
+            ? content.content.replace(headingSymbol, '')
+            : `${headingSymbol}${content.content}`
+          : content.content
+      )
+      .join('\n')
+
+    setContent(content)
+  }
+
+  /**
+   * 현재 Editor 영역 선택된 위치 반환
+   */
+  function getSelection() {
+    if (textarea.current) {
+      const { selectionEnd, selectionStart } = textarea.current
+
+      return { selectionStart, selectionEnd }
+    }
+
+    return { selectionStart: 0, selectionEnd: 0 }
+  }
+
+  function setSelection() {
+    const [start, end] = afterSelectionRange.current
+
+    textarea.current?.setSelectionRange(start, end !== -1 ? end : start)
+
+    textarea.current?.focus()
+
+    afterSelectionRange.current = [-1, -1]
+  }
+
+  /**
+   * 현재 입력된 컨텐츠 \n 단위로 자른 Object 리턴
+   */
+  function getSplitingContent() {
+    return content
+      .split('\n')
+      .reduce((acc: SplitingContent[], content: string, index: number) => {
+        const last = acc[acc.length - 1]
+
+        const start = index === 0 ? 0 : last.end + 1
+
+        return acc.concat({
+          content,
+          start: start,
+          end: start + content.length,
+        })
+      }, [])
+  }
+
+  useEffect(() => {
+    if (afterSelectionRange.current[0] !== -1) {
+      setSelection()
+    }
+  }, [content])
 
   const style = css`
     width: 100%;
@@ -34,13 +131,13 @@ function Toolbar({ textarea }: Props) {
 
   return (
     <Flex css={style}>
-      <Button>
+      <Button onClick={() => onClickHeading(2)}>
         <H2 />
       </Button>
-      <Button>
+      <Button onClick={() => onClickHeading(3)}>
         <H3 />
       </Button>
-      <Button>
+      <Button onClick={() => onClickHeading(4)}>
         <H4 />
       </Button>
       <Bar />
@@ -70,11 +167,12 @@ function Toolbar({ textarea }: Props) {
   )
 }
 
-interface ButtonProps {
-  children: React.ReactNode
-}
+type ButtonProps = ClassAttributes<HTMLButtonElement> &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    css?: Interpolation<Theme>
+  }
 
-function Button({ children }: ButtonProps) {
+function Button({ children, ...rest }: ButtonProps) {
   const { color } = useTheme()
 
   const style = css`
@@ -97,7 +195,11 @@ function Button({ children }: ButtonProps) {
     }
   `
 
-  return <button css={[square(size), pointer, style]}>{children}</button>
+  return (
+    <button {...rest} css={[square(size), pointer, style]}>
+      {children}
+    </button>
+  )
 }
 
 function Bar() {
@@ -106,7 +208,7 @@ function Bar() {
   const style = css`
     width: 2px;
     height: 14px;
-    margin: 0 4px;
+    margin: 0 12px;
     background-color: ${color.text_500};
   `
 
