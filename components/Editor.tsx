@@ -3,6 +3,8 @@ import { css, useTheme } from '@emotion/react'
 import transition from '@styles/transition'
 import React, { useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
+import Spacing from './layout/Spacing'
+import Toolbar from './Toolbar'
 
 type Command = '' | 'Tab'
 
@@ -19,7 +21,7 @@ function Editor() {
 
   const style = css`
     width: 100%;
-    height: 100%;
+    height: calc(calc(100% - 1rem) - 32px);
     resize: none;
     border: none;
 
@@ -69,14 +71,18 @@ function Editor() {
   }, [content])
 
   return (
-    <textarea
-      ref={textarea}
-      css={style}
-      value={content}
-      onChange={onChangeContent}
-      onKeyDown={onKeydown}
-      placeholder='오늘 공유하고 싶은 내용을 입력해주세요.'
-    />
+    <>
+      <Toolbar textarea={textarea} />
+      <Spacing size='1rem' />
+      <textarea
+        ref={textarea}
+        css={style}
+        value={content}
+        onChange={onChangeContent}
+        onKeyDown={onKeydown}
+        placeholder='오늘 공유하고 싶은 내용을 입력해주세요.'
+      />
+    </>
   )
 }
 
