@@ -32,6 +32,7 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
 
   * {
     transition: ${transition.fast} !important;
+    letter-spacing: 0.075rem;
     &:not(code) {
       font-size: 1rem;
       line-height: 2rem;

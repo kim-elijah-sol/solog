@@ -14,6 +14,7 @@ import Quotes from '@icons/quotes.svg'
 import Link from '@icons/link.svg'
 import Img from '@icons/img.svg'
 import Code from '@icons/code.svg'
+import NewLine from '@icons/new-line.svg'
 
 interface Props {
   textarea: React.RefObject<HTMLTextAreaElement>
@@ -48,6 +49,9 @@ function Toolbar({ textarea }: Props) {
       </Button>
       <Button>
         <Italic />
+      </Button>
+      <Button>
+        <NewLine />
       </Button>
       <Bar />
       <Button>

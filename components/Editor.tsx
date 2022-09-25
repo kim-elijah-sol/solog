@@ -24,6 +24,7 @@ function Editor() {
     height: calc(calc(100% - 1rem) - 32px);
     resize: none;
     border: none;
+    letter-spacing: 0.075rem;
 
     color: ${color.text_900};
     background-color: transparent;
