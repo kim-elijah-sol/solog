@@ -74,10 +74,12 @@ function Toolbar({ textarea }: Props) {
     setContent(content)
   }
 
-  function onClickBold() {
+  function onClickAccent(tag: string) {
     const { selectionStart, selectionEnd } = getSelection()
 
     const contents = getSplitingContent()
+
+    const tagSize = tag.length
 
     if (selectionStart === selectionEnd) {
       const _afterSelectionRange = contents.reduce(
@@ -86,9 +88,9 @@ function Toolbar({ textarea }: Props) {
             selectionStart >= content.start &&
             selectionStart <= content.end
           ) {
-            const alreadyBold = content.content.includes('**')
+            const alreadyAccent = content.content.includes(tag)
 
-            const nextIndex = alreadyBold ? -2 : 2
+            const nextIndex = tagSize * (alreadyAccent ? -1 : 1)
 
             const next: [number, number] = [
               Math.max(content.start + nextIndex, 0),
@@ -108,22 +110,25 @@ function Toolbar({ textarea }: Props) {
       const content = contents
         .map((content) =>
           selectionStart >= content.start && selectionStart <= content.end
-            ? content.content.includes('**')
-              ? content.content.replaceAll('**', '')
-              : `**${content.content}**`
+            ? content.content.includes(tag)
+              ? content.content.replaceAll(tag, '')
+              : `${tag}${content.content}${tag}`
             : content.content
         )
         .join('\n')
 
       setContent(content)
     } else {
-      afterSelectionRange.current = [selectionStart + 2, selectionEnd + 2]
+      afterSelectionRange.current = [
+        selectionStart + tagSize,
+        selectionEnd + tagSize,
+      ]
 
       const head = content.substring(0, selectionStart)
       const middle = content.substring(selectionStart, selectionEnd)
       const tail = content.substring(selectionEnd)
 
-      setContent(`${head}**${middle}**${tail}`)
+      setContent(`${head}${tag}${middle}${tag}${tail}`)
     }
   }
 
@@ -195,10 +200,10 @@ function Toolbar({ textarea }: Props) {
       </Button>
       <Bar />
       <Button>
-        <Bold onClick={onClickBold} />
+        <Bold onClick={() => onClickAccent('**')} />
       </Button>
       <Button>
-        <Italic />
+        <Italic onClick={() => onClickAccent('*')} />
       </Button>
       <Button>
         <NewLine />
