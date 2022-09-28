@@ -74,6 +74,59 @@ function Toolbar({ textarea }: Props) {
     setContent(content)
   }
 
+  function onClickBold() {
+    const { selectionStart, selectionEnd } = getSelection()
+
+    const contents = getSplitingContent()
+
+    if (selectionStart === selectionEnd) {
+      const _afterSelectionRange = contents.reduce(
+        (acc: [number, number], content: SplitingContent) => {
+          if (
+            selectionStart >= content.start &&
+            selectionStart <= content.end
+          ) {
+            const alreadyBold = content.content.includes('**')
+
+            const nextIndex = alreadyBold ? -2 : 2
+
+            const next: [number, number] = [
+              Math.max(content.start + nextIndex, 0),
+              content.end + nextIndex,
+            ]
+
+            return next
+          }
+
+          return acc
+        },
+        [-1, -1]
+      )
+
+      afterSelectionRange.current = _afterSelectionRange
+
+      const content = contents
+        .map((content) =>
+          selectionStart >= content.start && selectionStart <= content.end
+            ? content.content.includes('**')
+              ? content.content.replaceAll('**', '')
+              : `**${content.content}**`
+            : content.content
+        )
+        .join('\n')
+
+      setContent(content)
+    } else {
+      afterSelectionRange.current = [selectionStart + 2, selectionEnd + 2]
+
+      const head = content.substring(0, selectionStart)
+      const middle = content.substring(selectionStart, selectionEnd)
+      const tail = content.substring(selectionEnd)
+
+      setContent(`${head}**${middle}**${tail}`)
+    }
+  }
+
   /**
    * 현재 Editor 영역 선택된 위치 반환
    */
@@ -142,7 +195,7 @@ function Toolbar({ textarea }: Props) {
       </Button>
       <Bar />
       <Button>
-        <Bold />
+        <Bold onClick={onClickBold} />
       </Button>
       <Button>
         <Italic />
