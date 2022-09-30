@@ -132,6 +132,23 @@ function Toolbar({ textarea }: Props) {
     }
   }
 
+  function onClickNewLine() {
+    const newLine = '<br/>'
+
+    const { selectionStart } = getSelection()
+
+    const head = content.substring(0, selectionStart)
+    const tail = content.substring(selectionStart)
+
+    const nextContent = `${head}\n${newLine}\n${tail}`
+
+    const selectionRange = selectionStart + 7
+
+    afterSelectionRange.current = [selectionRange, selectionRange]
+
+    setContent(nextContent)
+  }
+
   /**
    * 현재 Editor 영역 선택된 위치 반환
    */
@@ -206,7 +223,7 @@ function Toolbar({ textarea }: Props) {
         <Italic onClick={() => onClickAccent('*')} />
       </Button>
       <Button>
-        <NewLine />
+        <NewLine onClick={onClickNewLine} />
       </Button>
       <Bar />
       <Button>

@@ -46,6 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/react-syntax-highlighter", "npm:15.5.5"],\
             ["@types/recoil", "npm:0.0.9"],\
+            ["@types/uuid", "npm:8.3.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:5.36.2"],\
             ["@typescript-eslint/parser", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:5.36.2"],\
             ["babel-loader", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:8.2.5"],\
@@ -68,7 +69,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-syntax-highlighter", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:15.5.0"],\
             ["recoil", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:0.7.5"],\
             ["rehype-raw", "npm:6.1.1"],\
-            ["typescript", "patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=a1c5e5"]\
+            ["typescript", "patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=a1c5e5"],\
+            ["uuid", "npm:9.0.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -4879,6 +4881,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/uuid", [\
+        ["npm:8.3.4", {\
+          "packageLocation": "./.yarn/cache/@types-uuid-npm-8.3.4-7547f4402c-6f11f3ff70.zip/node_modules/@types/uuid/",\
+          "packageDependencies": [\
+            ["@types/uuid", "npm:8.3.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@typescript-eslint/eslint-plugin", [\
         ["npm:5.36.2", {\
           "packageLocation": "./.yarn/cache/@typescript-eslint-eslint-plugin-npm-5.36.2-919e5b0939-edcd9fcecd.zip/node_modules/@typescript-eslint/eslint-plugin/",\
@@ -9358,6 +9369,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/react-syntax-highlighter", "npm:15.5.5"],\
             ["@types/recoil", "npm:0.0.9"],\
+            ["@types/uuid", "npm:8.3.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:5.36.2"],\
             ["@typescript-eslint/parser", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:5.36.2"],\
             ["babel-loader", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:8.2.5"],\
@@ -9380,7 +9392,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-syntax-highlighter", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:15.5.0"],\
             ["recoil", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:0.7.5"],\
             ["rehype-raw", "npm:6.1.1"],\
-            ["typescript", "patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=a1c5e5"]\
+            ["typescript", "patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=a1c5e5"],\
+            ["uuid", "npm:9.0.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -9988,6 +10001,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [\
             "@types/react",\
             "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["uuid", [\
+        ["npm:9.0.0", {\
+          "packageLocation": "./.yarn/cache/uuid-npm-9.0.0-46c41e3e43-8dd2c83c43.zip/node_modules/uuid/",\
+          "packageDependencies": [\
+            ["uuid", "npm:9.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\

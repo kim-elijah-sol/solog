@@ -2341,6 +2341,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uuid@npm:^8.3.4":
+  version: 8.3.4
+  resolution: "@types/uuid@npm:8.3.4"
+  checksum: 6f11f3ff70f30210edaa8071422d405e9c1d4e53abbe50fdce365150d3c698fe7bbff65c1e71ae080cbfb8fded860dbb5e174da96fdbbdfcaa3fb3daa474d20f
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/eslint-plugin@npm:^5.36.2":
   version: 5.36.2
   resolution: "@typescript-eslint/eslint-plugin@npm:5.36.2"
@@ -5967,6 +5974,7 @@ __metadata:
     "@types/react-dom": 18.0.6
     "@types/react-syntax-highlighter": ^15.5.5
     "@types/recoil": ^0.0.9
+    "@types/uuid": ^8.3.4
     "@typescript-eslint/eslint-plugin": ^5.36.2
     "@typescript-eslint/parser": ^5.36.2
     babel-loader: latest
@@ -5990,6 +5998,7 @@ __metadata:
     recoil: ^0.7.5
     rehype-raw: ^6.1.1
     typescript: 4.8.2
+    uuid: ^9.0.0
   languageName: unknown
   linkType: soft
 
@@ -6475,6 +6484,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
   languageName: node
   linkType: hard
 

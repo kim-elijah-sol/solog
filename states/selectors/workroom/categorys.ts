@@ -1,9 +1,10 @@
 import { selector } from 'recoil'
+import { v1 } from 'uuid'
 
 import $category from '../../atoms/workroom/category'
 
 const $categorys = selector({
-  key: '@workroom/categorys',
+  key: `@workroom/categorys__${v1()}`,
   get: ({ get }) => {
     const category = get($category)
 

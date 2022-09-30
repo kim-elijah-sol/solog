@@ -1,4 +1,5 @@
 import { atom } from 'recoil'
+import { v1 } from 'uuid'
 
 type Type = 'error' | 'notice'
 
@@ -11,7 +12,7 @@ export interface Notification {
 }
 
 const $notifications = atom<Notification[]>({
-  key: '@global/notifications',
+  key: `@global/notifications__${v1()}`,
   default: [],
 })
 
