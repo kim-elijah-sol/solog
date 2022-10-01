@@ -149,6 +149,42 @@ function Toolbar({ textarea }: Props) {
     setContent(nextContent)
   }
 
+  function onClickBlockQuote() {
+    const { selectionStart } = getSelection()
+
+    const contents = getSplitingContent()
+
+    const _afterSelectionRange = contents.reduce(
+      (acc: [number, number], content: SplitingContent) => {
+        if (selectionStart >= content.start && selectionStart <= content.end) {
+          const nextContent = `>${content.content}`
+
+          const start = nextContent.replace(/[^>]/g, '').length + content.start
+
+          const end = start + content.content.length
+
+          const next: [number, number] = [start, end]
+          return next
+        }
+
+        return acc
+      },
+      [-1, -1]
+    )
+
+    afterSelectionRange.current = _afterSelectionRange
+
+    const content = contents
+      .map((content) =>
+        selectionStart >= content.start && selectionStart <= content.end
+          ? `>${content.content}`
+          : content.content
+      )
+      .join('\n')
+
+    setContent(content)
+  }
+
   /**
    * 현재 Editor 영역 선택된 위치 반환
    */
@@ -227,7 +263,7 @@ function Toolbar({ textarea }: Props) {
       </Button>
       <Bar />
       <Button>
-        <Quotes />
+        <Quotes onClick={onClickBlockQuote} />
       </Button>
       <Button>
         <Link />
