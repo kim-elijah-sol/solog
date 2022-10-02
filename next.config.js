@@ -4,6 +4,9 @@ const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ['newevolutiondesigns.com'],
+  },
   webpack(config) {
     const _config = Object.assign(config, {
       resolve: {

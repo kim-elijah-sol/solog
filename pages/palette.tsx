@@ -1,4 +1,3 @@
-import $theme from '@atoms/global/theme'
 import InputField from '@components/InputField'
 import Flex from '@components/layout/Flex'
 import Spacing from '@components/layout/Spacing'
@@ -8,9 +7,9 @@ import { css, useTheme } from '@emotion/react'
 import { staticColor } from '@styles/palette'
 import transition from '@styles/transition'
 import React, { useState } from 'react'
-import { useSetRecoilState } from 'recoil'
 import Radio from '@components/Radio'
 import Markdown from '@components/Markdown'
+import Image from 'next/image'
 
 const padding = 25
 
@@ -131,12 +130,6 @@ const markdown = `
 function Palette() {
   const { color } = useTheme()
 
-  const setTheme = useSetRecoilState($theme)
-
-  function onClickThemeToggle() {
-    setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
-  }
-
   const [selected, setSelected] = useState<number[]>([])
 
   const 라이브러리 = [
@@ -183,6 +176,17 @@ function Palette() {
 
   return (
     <>
+      <Container>
+        <Image
+          src={
+            'https://newevolutiondesigns.com/images/freebies/4k-space-wallpaper-1.jpg'
+          }
+          width={648}
+          height={364}
+          priority
+        />
+      </Container>
+
       <Container>
         <Markdown>{markdown}</Markdown>
       </Container>
