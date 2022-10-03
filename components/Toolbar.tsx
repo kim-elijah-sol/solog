@@ -1,6 +1,6 @@
 import $content from '@atoms/workroom/content'
 import { css, Interpolation, Theme, useTheme } from '@emotion/react'
-import { pointer, square } from '@styles/common'
+import { pointer, relative, square } from '@styles/common'
 import transition from '@styles/transition'
 import { useRecoilState } from 'recoil'
 import Flex from './layout/Flex'
@@ -15,7 +15,15 @@ import Link from '@icons/link.svg'
 import Img from '@icons/img.svg'
 import Code from '@icons/code.svg'
 import NewLine from '@icons/new-line.svg'
-import { ClassAttributes, ButtonHTMLAttributes, useRef, useEffect } from 'react'
+import {
+  ClassAttributes,
+  ButtonHTMLAttributes,
+  useRef,
+  useEffect,
+  useState,
+} from 'react'
+import If from './If'
+import LinkInput, { LinkInputSubmitParam } from './LinkInput'
 
 interface Props {
   textarea: React.RefObject<HTMLTextAreaElement>
@@ -30,6 +38,8 @@ type SplitingContent = {
 const size = '36px'
 
 function Toolbar({ textarea }: Props) {
+  const [linkInputShow, setLinkInputShow] = useState(false)
+
   const [content, setContent] = useRecoilState($content)
 
   const afterSelectionRange = useRef<[number, number]>([-1, -1])
@@ -185,6 +195,35 @@ function Toolbar({ textarea }: Props) {
     setContent(content)
   }
 
+  function onClickLink() {
+    const { selectionStart, selectionEnd } = getSelection()
+
+    const contents = getSplitingContent()
+
+    if (selectionStart === selectionEnd) {
+      setLinkInputShow(!linkInputShow)
+    } else {
+    }
+  }
+
+  function onClickLinkAdd({ name, href }: LinkInputSubmitParam) {
+    const { selectionStart } = getSelection()
+
+    const head = content.substring(0, selectionStart)
+
+    const tail = content.substring(selectionStart)
+
+    const link = `[${name || href}](${href})`
+
+    const nextContent = `${head}${link}${tail}`
+
+    afterSelectionRange.current = [selectionStart + link.length, -1]
+
+    setContent(nextContent)
+
+    setLinkInputShow(false)
+  }
+
   /**
    * 현재 Editor 영역 선택된 위치 반환
    */
@@ -265,9 +304,16 @@ function Toolbar({ textarea }: Props) {
       <Button>
         <Quotes onClick={onClickBlockQuote} />
       </Button>
-      <Button>
-        <Link />
-      </Button>
+      <Relative>
+        <Button onClick={onClickLink}>
+          <Link />
+        </Button>
+        <If condition={linkInputShow}>
+          <If.Then>
+            <LinkInput onSubmit={onClickLinkAdd} />
+          </If.Then>
+        </If>
+      </Relative>
       <Button>
         <Img />
       </Button>
@@ -324,6 +370,14 @@ function Bar() {
   `
 
   return <div css={style} />
+}
+
+interface RelativeProps {
+  children: React.ReactNode
+}
+
+function Relative({ children }: RelativeProps) {
+  return <div css={relative}>{children}</div>
 }
 
 export default Toolbar

@@ -157,3 +157,7 @@ export const pointer = css`
 export const eResize = css`
   cursor: e-resize;
 `
+
+export const relative = css`
+  position: relative;
+`
