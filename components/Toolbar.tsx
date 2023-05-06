@@ -198,11 +198,18 @@ function Toolbar({ textarea }: Props) {
   function onClickLink() {
     const { selectionStart, selectionEnd } = getSelection()
 
-    const contents = getSplitingContent()
-
     if (selectionStart === selectionEnd) {
       setLinkInputShow(!linkInputShow)
     } else {
+      const head = content.substring(0, selectionStart)
+      const middle = content.substring(selectionStart, selectionEnd)
+      const tail = content.substring(selectionEnd)
+
+      const nextContent = `${head}[${middle}](${middle})${tail}`
+
+      afterSelectionRange.current = [selectionStart + 1, selectionEnd + 1]
+
+      setContent(nextContent)
     }
   }
 
