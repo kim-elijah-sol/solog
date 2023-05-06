@@ -1,8 +1,7 @@
-import Link from '@components/Link'
 import ThemeToggleButton from '@components/ThemeToggleButton'
 import { css, Interpolation, Theme, useTheme } from '@emotion/react'
 import { firaCode } from '@styles/common'
-import { opacity } from '@styles/palette'
+import Link from 'next/link'
 import { ClassAttributes, HTMLAttributes } from 'react'
 import Flex from './Flex'
 
