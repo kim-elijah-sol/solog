@@ -184,6 +184,7 @@ function Palette() {
           width={648}
           height={364}
           priority
+          alt=''
         />
       </Container>
 
