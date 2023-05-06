@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { css, Interpolation, Theme, useTheme } from '@emotion/react'
 import React, { ClassAttributes, HTMLAttributes } from 'react'
@@ -25,7 +26,7 @@ import { opacity } from '@styles/palette'
 import { eResize, thinScrollBar } from '@styles/common'
 import $duplicateCategorys from '@selectors/workroom/duplicateCategorys'
 import useWatchDuplicateCategorys from '@hooks/workroom/useWatchDuplicateCategorys'
-import Date from '@components/Date'
+import DateIndicator from '@components/DateIndicator'
 import Editor from '@components/Editor'
 
 function Workroom() {
@@ -80,7 +81,9 @@ function Workroom() {
           <Spacing size='3rem' />
           <Title>{title}</Title>
           <Spacing size='2rem' />
-          <Date>2022년 09월 24일</Date>
+          <DateIndicator>
+            {format(new Date(), 'yyyy년 MM월 dd일')}
+          </DateIndicator>
           <Spacing size='1rem' />
           <Categorys>
             {categorys.map((category, index) => (

@@ -7,7 +7,7 @@ interface Props {
   children: string
 }
 
-function Date({ children }: Props) {
+function DateIndicator({ children }: Props) {
   const { color } = useTheme()
 
   const style = css`
@@ -39,4 +39,4 @@ function Date({ children }: Props) {
   )
 }
 
-export default Date
+export default DateIndicator

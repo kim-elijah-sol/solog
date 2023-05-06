@@ -25,7 +25,7 @@ const headerStyle = css`
   left: 0;
   right: 0;
 
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
   z-index: 100;
 `
 
