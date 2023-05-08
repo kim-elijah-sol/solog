@@ -89,13 +89,6 @@ const markdown = `
   _**[여긴 구글입니다.](https://www.google.com)**_
 
   <br/>
-  <br/>
-  <br/>
-  <br/>
-
-  ![](https://newevolutiondesigns.com/images/freebies/4k-space-wallpaper-1.jpg)
-
-  ![](https://www.svgrepo.com/show/303600/typescript-logo.svg)
 
   - 리스트 1
   - 리스트 2
@@ -176,18 +169,6 @@ function Palette() {
 
   return (
     <>
-      <Container>
-        <Image
-          src={
-            'https://newevolutiondesigns.com/images/freebies/4k-space-wallpaper-1.jpg'
-          }
-          width={648}
-          height={364}
-          priority
-          alt=''
-        />
-      </Container>
-
       <Container>
         <Markdown>{markdown}</Markdown>
       </Container>
