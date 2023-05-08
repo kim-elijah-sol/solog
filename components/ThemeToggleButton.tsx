@@ -14,6 +14,10 @@ const buttonStyle = css`
 `
 
 function ThemeToggleButton() {
+  const {
+    color: { type },
+  } = useTheme()
+
   const setTheme = useSetRecoilState($theme)
 
   function onClickThemeToggle() {
@@ -25,11 +29,9 @@ function ThemeToggleButton() {
       css={[buttonStyle, pointer, square(36)]}
       onClick={onClickThemeToggle}
     >
-      <Circle>
-        <Eclipse />
-      </Circle>
+      <Circle>{type === 'dark' ? <Eclipse /> : <></>}</Circle>
 
-      {Array(4)
+      {Array(type === 'light' ? 4 : 0)
         .fill(0)
         .map((_, index) => {
           return <Flare rotate={index * 45} key={index} />
@@ -51,7 +53,6 @@ function Circle({ children }: CircleProps) {
         circle(color.type === 'dark' ? 24 : 12),
         css`
           background-color: ${color.text_900};
-          transition: ${transition.fast};
         `,
       ]}
     >
@@ -76,8 +77,6 @@ function Eclipse() {
           right: ${eclipsePosition}px;
           top: ${eclipsePosition}px;
           transform: rotate(0.001deg);
-          transition: all ${transition.slow},
-            background-color ${transition.fast};
         `,
       ]}
     />
