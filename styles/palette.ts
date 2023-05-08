@@ -1,6 +1,4 @@
-import { ThemeColor } from 'emotion'
-
-export const lightColor: ThemeColor = {
+export const lightColor = {
   type: 'light',
 
   background: '#ffffff',
@@ -15,9 +13,9 @@ export const lightColor: ThemeColor = {
   text_700: '#505050',
   text_800: '#353535',
   text_900: '#202020',
-}
+} as const
 
-export const darkColor: ThemeColor = {
+export const darkColor = {
   type: 'dark',
 
   background: '#212121',
@@ -32,7 +30,7 @@ export const darkColor: ThemeColor = {
   text_700: '#c5c5c5',
   text_800: '#e0e0e0',
   text_900: '#f5f5f5',
-}
+} as const
 
 export const staticColor = {
   primary_50: '#e7f2fd',
@@ -56,7 +54,7 @@ export const staticColor = {
   red_700: '#d8263f',
   red_800: '#cb1e38',
   red_900: '#bc0c2c',
-}
+} as const
 
 /**
  * hex 컬러 코드에 투명도를 조절한 rgba 값이 반환되는 함수
