@@ -6,8 +6,13 @@ import Seo from '@components/Seo'
 import Header from '@components/layout/Header'
 import ParentContainer from '@components/layout/ParentContaier'
 import NotificationCenter from '@components/NotificationCenter'
+import { ThemeType } from '@atoms/global/theme'
 
-function MyApp({ Component, pageProps }: AppProps) {
+interface Props {
+  theme: ThemeType
+}
+
+function MyApp({ Component, pageProps }: AppProps<Props>) {
   const { theme } = pageProps
 
   return (

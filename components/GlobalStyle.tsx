@@ -9,7 +9,7 @@ function GlobalStyle() {
       styles={[
         reset,
         css`
-          #__next {
+          body {
             background-color: ${color.background};
           }
 
