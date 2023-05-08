@@ -3,8 +3,6 @@ import transition from './transition'
 
 export const reset = css`
   #__next {
-    min-height: 100vh;
-    width: 100%;
     transition: background ${transition.fast};
   }
 
@@ -31,9 +29,5 @@ export const reset = css`
     &:not(h1, h2, h3, h4, h5, h6) {
       font-size: 14px;
     }
-  }
-
-  #__solog__ {
-    padding-top: 64px;
   }
 `

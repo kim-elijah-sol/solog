@@ -13,19 +13,9 @@ type HeaderProps = ClassAttributes<HTMLElement> &
 const headerStyle = css`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
+  justify-content: center;
   height: 64px;
-
-  padding: 0 32px;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  backdrop-filter: blur(8px);
-  z-index: 100;
+  padding: 0 16px;
 `
 
 const rightSlotStyle = css`
@@ -39,21 +29,30 @@ function Header(props: Omit<HeaderProps, 'children'>) {
 
   return (
     <header {...props} css={headerStyle}>
-      <Link
-        href='/'
-        css={[
-          firaCode(500),
-          css`
-            text-decoration: unset;
-            color: ${color.text_900};
-            font-size: 20px;
-          `,
-        ]}
+      <Flex
+        css={{
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          maxWidth: 1024,
+          width: '100%',
+        }}
       >
-        Solog
-      </Link>
-      <Flex css={rightSlotStyle}>
-        <ThemeToggleButton />
+        <Link
+          href='/'
+          css={[
+            firaCode(500),
+            css`
+              text-decoration: unset;
+              color: ${color.text_900};
+              font-size: 20px;
+            `,
+          ]}
+        >
+          Solog
+        </Link>
+        <Flex css={rightSlotStyle}>
+          <ThemeToggleButton />
+        </Flex>
       </Flex>
     </header>
   )
