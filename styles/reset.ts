@@ -21,6 +21,7 @@ export const reset = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.2;
+    text-decoration: none;
 
     &:focus {
       outline: 0;
@@ -29,5 +30,7 @@ export const reset = css`
     &:not(h1, h2, h3, h4, h5, h6) {
       font-size: 14px;
     }
+
+    -webkit-tap-highlight-color: transparent;
   }
 `
