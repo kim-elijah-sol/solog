@@ -36,7 +36,7 @@ function Editor() {
     }
   `
 
-  function onChangeContent(e: React.ChangeEvent<HTMLTextAreaElement>) {
+  function handleChangeContent(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setContent(e.target.value)
   }
 
@@ -79,7 +79,7 @@ function Editor() {
         ref={textarea}
         css={style}
         value={content}
-        onChange={onChangeContent}
+        onChange={handleChangeContent}
         onKeyDown={onKeydown}
         placeholder='오늘 공유하고 싶은 내용을 입력해주세요.'
       />

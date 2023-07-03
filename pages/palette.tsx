@@ -152,7 +152,7 @@ function Palette() {
     },
   ]
 
-  function onChange(id: number) {
+  function handleChange(id: number) {
     setSelected(
       selected.includes(id)
         ? selected.filter((_id) => _id !== id)
@@ -248,7 +248,7 @@ function Palette() {
         <Dropdown
           placeholder='라이브러리를 선택해주세요.'
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
         >
           {라이브러리.map(({ id, name }) => (
             <Dropdown.Option

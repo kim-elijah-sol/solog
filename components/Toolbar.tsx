@@ -35,7 +35,7 @@ type SplitingContent = {
   end: number
 }
 
-const size = '36px'
+const toolbarheight = '36px'
 
 function Toolbar({ textarea }: Props) {
   const [linkInputShow, setLinkInputShow] = useState(false)
@@ -44,7 +44,7 @@ function Toolbar({ textarea }: Props) {
 
   const afterSelectionRange = useRef<[number, number]>([-1, -1])
 
-  function onClickHeading(heading: number) {
+  function handleClickHeading(heading: number) {
     const headingSymbol = Array(heading).fill('#').join('') + ' '
 
     const { selectionStart } = getSelection()
@@ -84,7 +84,7 @@ function Toolbar({ textarea }: Props) {
     setContent(content)
   }
 
-  function onClickAccent(tag: string) {
+  function handleClickAccent(tag: string) {
     const { selectionStart, selectionEnd } = getSelection()
 
     const contents = getSplitingContent()
@@ -142,7 +142,7 @@ function Toolbar({ textarea }: Props) {
     }
   }
 
-  function onClickNewLine() {
+  function handleClickNewLine() {
     const newLine = '<br/>'
 
     const { selectionStart } = getSelection()
@@ -159,7 +159,7 @@ function Toolbar({ textarea }: Props) {
     setContent(nextContent)
   }
 
-  function onClickBlockQuote() {
+  function handleClickBlockQuote() {
     const { selectionStart } = getSelection()
 
     const contents = getSplitingContent()
@@ -195,7 +195,7 @@ function Toolbar({ textarea }: Props) {
     setContent(content)
   }
 
-  function onClickLink() {
+  function handleClickLink() {
     const { selectionStart, selectionEnd } = getSelection()
 
     if (selectionStart === selectionEnd) {
@@ -213,7 +213,7 @@ function Toolbar({ textarea }: Props) {
     }
   }
 
-  function onClickLinkAdd({ name, href }: LinkInputSubmitParam) {
+  function handleClickLinkAdd({ name, href }: LinkInputSubmitParam) {
     const { selectionStart } = getSelection()
 
     const head = content.substring(0, selectionStart)
@@ -281,43 +281,43 @@ function Toolbar({ textarea }: Props) {
 
   const style = css`
     width: 100%;
-    height: ${size};
+    height: ${toolbarheight};
     gap: 4px;
     align-items: center;
   `
 
   return (
     <Flex css={style}>
-      <Button onClick={() => onClickHeading(2)}>
+      <Button onClick={() => handleClickHeading(2)}>
         <H2 />
       </Button>
-      <Button onClick={() => onClickHeading(3)}>
+      <Button onClick={() => handleClickHeading(3)}>
         <H3 />
       </Button>
-      <Button onClick={() => onClickHeading(4)}>
+      <Button onClick={() => handleClickHeading(4)}>
         <H4 />
       </Button>
       <Bar />
       <Button>
-        <Bold onClick={() => onClickAccent('**')} />
+        <Bold onClick={() => handleClickAccent('**')} />
       </Button>
       <Button>
-        <Italic onClick={() => onClickAccent('*')} />
+        <Italic onClick={() => handleClickAccent('*')} />
       </Button>
       <Button>
-        <NewLine onClick={onClickNewLine} />
+        <NewLine onClick={handleClickNewLine} />
       </Button>
       <Bar />
       <Button>
-        <Quotes onClick={onClickBlockQuote} />
+        <Quotes onClick={handleClickBlockQuote} />
       </Button>
       <Relative>
-        <Button onClick={onClickLink}>
+        <Button onClick={handleClickLink}>
           <Link />
         </Button>
         <If condition={linkInputShow}>
           <If.Then>
-            <LinkInput onSubmit={onClickLinkAdd} />
+            <LinkInput onSubmit={handleClickLinkAdd} />
           </If.Then>
         </If>
       </Relative>
@@ -360,7 +360,7 @@ function Button({ children, ...rest }: ButtonProps) {
   `
 
   return (
-    <button {...rest} css={[square(size), pointer, style]}>
+    <button {...rest} css={[square(toolbarheight), pointer, style]}>
       {children}
     </button>
   )

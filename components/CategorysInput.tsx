@@ -20,7 +20,7 @@ function CategoryInput() {
     }
   `
 
-  function onChangeCategory(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChangeCategory(e: React.ChangeEvent<HTMLInputElement>) {
     setCategory(e.target.value)
   }
 
@@ -28,7 +28,7 @@ function CategoryInput() {
     <input
       type='text'
       value={category}
-      onChange={onChangeCategory}
+      onChange={handleChangeCategory}
       css={style}
       placeholder={`카테고리를 입력해주세요. (',' 자로 구분)`}
     />

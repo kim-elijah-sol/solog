@@ -20,14 +20,14 @@ function ThemeToggleButton() {
 
   const setTheme = useSetRecoilState($theme)
 
-  function onClickThemeToggle() {
+  function handleClickThemeToggle() {
     setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
   }
 
   return (
     <button
       css={[buttonStyle, pointer, square(36)]}
-      onClick={onClickThemeToggle}
+      onClick={handleClickThemeToggle}
     >
       <Circle>{type === 'dark' ? <Eclipse /> : <></>}</Circle>
 

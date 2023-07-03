@@ -56,7 +56,7 @@ function Dropdown({
     color: ${color.text_300};
   `
 
-  function onClick() {
+  function handleClick() {
     if (!disabled) setIsOpen(!isOpen)
   }
 
@@ -88,7 +88,7 @@ function Dropdown({
           ${boxShadowBorder({ width: 2, color: staticColor.primary_400 })}
         }
       `}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <Text css={isPlaceholderDisplayCondition ? placeholderStyle : undefined}>
         {isPlaceholderDisplayCondition ? placeholder : value}
@@ -183,7 +183,7 @@ interface OptionProps extends CssProps {
 function Option({ children, onChange, checked, value, ...rest }: OptionProps) {
   const { color } = useTheme()
 
-  function onClick() {
+  function handleClick() {
     if (onChange && value) {
       onChange(value)
     }
@@ -205,7 +205,7 @@ function Option({ children, onChange, checked, value, ...rest }: OptionProps) {
           background-color: ${color.text_50};
         }
       `}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {children}
     </button>

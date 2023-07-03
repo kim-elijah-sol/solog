@@ -10,7 +10,7 @@ function TitleInput() {
 
   const [title, setTitle] = useRecoilState($title)
 
-  function onChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
     setTitle(e.target.value)
   }
 
@@ -29,7 +29,7 @@ function TitleInput() {
     <input
       type='text'
       value={title}
-      onChange={onChangeTitle}
+      onChange={handleChangeTitle}
       css={style}
       placeholder='제목을 입력해주세요.'
     />

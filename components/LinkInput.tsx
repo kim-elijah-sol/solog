@@ -74,11 +74,11 @@ function LinkInput({ onSubmit }: Props) {
 
   const disabled = form.href.trim().length === 0
 
-  function onClickButton() {
+  function handleClickButton() {
     if (onSubmit) onSubmit(form)
   }
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { id, value } = e.target
 
     setForm({
@@ -100,7 +100,7 @@ function LinkInput({ onSubmit }: Props) {
         type='text'
         css={style.input}
         value={form.name}
-        onChange={onChange}
+        onChange={handleClickButton}
         placeholder='링크 텍스트'
       />
       <Spacing size='0.75rem' />
@@ -109,7 +109,7 @@ function LinkInput({ onSubmit }: Props) {
         type='text'
         css={style.input}
         value={form.href}
-        onChange={onChange}
+        onChange={handleChange}
         placeholder='링크'
       />
       <Spacing size='1.25rem' />
@@ -117,7 +117,7 @@ function LinkInput({ onSubmit }: Props) {
         type='button'
         css={style.button}
         disabled={disabled}
-        onClick={onClickButton}
+        onClick={handleClickButton}
       >
         확인
       </button>

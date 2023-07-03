@@ -46,7 +46,7 @@ function Workroom() {
     height: calc(100vh - 64px);
   `
 
-  function onClickCategory(index: number) {
+  function handleClickCategory(index: number) {
     setCategory(
       category
         .split(',')
@@ -90,7 +90,7 @@ function Workroom() {
               <Categorys.Item
                 key={index}
                 isDuplicated={duplicateCategorys.includes(category)}
-                onClick={() => onClickCategory(index)}
+                onClick={() => handleClickCategory(index)}
               >
                 {category}
               </Categorys.Item>
