@@ -11,9 +11,7 @@ function DateIndicator({ children }: Props) {
   const { color } = useTheme()
 
   const style = css`
-    width: calc(100% - 32px);
-    max-width: 648px;
-    margin: 0 auto;
+    width: 100%;
     align-items: center;
     gap: 12px;
 

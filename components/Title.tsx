@@ -11,9 +11,7 @@ function Title({ children }: Props) {
   const style = css`
     color: ${color.text_900};
     font-size: 2.75rem;
-    width: calc(100% - 32px);
-    max-width: 648px;
-    margin: 0 auto;
+    width: 100%;
     transition: ${transition.fast};
   `
 

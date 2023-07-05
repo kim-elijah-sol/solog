@@ -26,15 +26,13 @@ function getCodeBlockBackgroundColor(theme: ThemeType) {
 }
 
 const MarkdownStyle = styled.div<MarkdownStyleProps>`
-  width: calc(100% - 32px);
-  max-width: 648px;
-  margin: 0 auto;
+  width: 100%;
 
   * {
     transition: ${transition.fast} !important;
-    letter-spacing: 0.075rem;
     &:not(code) {
-      font-size: 1rem;
+      letter-spacing: 0.075rem;
+      font-size: 1.15rem;
       line-height: 2rem;
     }
   }

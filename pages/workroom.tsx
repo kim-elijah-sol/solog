@@ -65,7 +65,7 @@ function Workroom() {
 
       <Flex css={containerStyle}>
         <Left divisionPosition={divisionPosition}>
-          <Spacing size='3rem' />
+          <Spacing size='2.5rem' />
           <TitleInput />
           <Spacing size='2rem' />
           <CategorysInput />
@@ -78,13 +78,13 @@ function Workroom() {
         <Division onMouseDown={allowMove} moveAllow={moveAllow} />
 
         <Right divisionPosition={divisionPosition}>
-          <Spacing size='3rem' />
+          <Spacing size='2.5rem' />
           <Title>{title}</Title>
           <Spacing size='2rem' />
           <DateIndicator>
             {format(new Date(), 'yyyy년 MM월 dd일')}
           </DateIndicator>
-          <Spacing size='1rem' />
+          <Spacing size='1.5rem' />
           <Categorys>
             {categorys.map((category, index) => (
               <Categorys.Item
@@ -207,6 +207,7 @@ function Right({ divisionPosition, children }: WrapperProps) {
   const { color } = useTheme()
 
   const style = css`
+    padding: 0 16px;
     max-height: 100%;
     overflow-y: auto;
     padding-bottom: 32px;

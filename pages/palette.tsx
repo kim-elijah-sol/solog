@@ -67,7 +67,7 @@ function Container({ children }: { children: React.ReactNode }) {
   )
 }
 
-const markdown = `
+export const markdown = `
   ## 헤딩 h1
   ### 헤딩 h2
   #### 헤딩 h3
@@ -98,7 +98,7 @@ const markdown = `
     - 리스트 3-2
     - 리스트 3-3
       - 리스트 3-3-1
-
+  <br />
   \`\`\`tsx
   interface Props {
     value : number

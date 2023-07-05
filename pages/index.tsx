@@ -5,7 +5,7 @@ import contents from '@shared/contents'
 
 const listStyle = css`
   align-items: center;
-  max-width: 648px;
+  max-width: 764px;
   margin: 4rem auto 8rem;
   width: calc(100% - 32px);
 `

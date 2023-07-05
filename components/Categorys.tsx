@@ -14,9 +14,7 @@ interface Props {
 
 function Categorys({ children }: Props) {
   const style = css`
-    width: calc(100% - 32px);
-    max-width: 648px;
-    margin: 0 auto;
+    width: 100%;
     gap: 12px;
     flex-wrap: wrap;
   `
@@ -44,9 +42,9 @@ function Item({ children, isDuplicated, onClick }: ItemProps) {
   const style = css`
     color: white;
     transition: ${transition.fast};
-    padding: 0 12px;
+    padding: 0 1rem;
     background-color: ${outSideColor};
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     height: 32px;
     line-height: 32px;
     border-radius: 16px;
