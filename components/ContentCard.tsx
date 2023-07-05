@@ -24,17 +24,15 @@ function ContentCard({
       css={{
         width: '100%',
         marginTop: index === 0 ? undefined : '6rem',
-        '@media (min-width: 680px)': {
-          '&:hover': css`
-            img {
-              transform: translateY(-1rem);
-            }
+        '&:hover': css`
+          img {
+            transform: translateY(-1rem);
+          }
 
-            h2 {
-              color: ${staticColor.primary_700};
-            }
-          `,
-        },
+          h2 {
+            color: ${staticColor.primary_700};
+          }
+        `,
         '@media (max-width: 680px)': {
           marginTop: index === 0 ? undefined : '4rem',
         },
