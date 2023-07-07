@@ -20,6 +20,16 @@ const CoverImage = styled.img`
   height: 300px;
   border-radius: 16px;
   object-fit: cover;
+  border: ${(props) =>
+    props.theme.color.type === 'dark'
+      ? `1px solid rgba(255, 255, 255, 0.18)`
+      : `1px solid rgba(100, 100, 100, 0.18)`};
+  margin-bottom: 2.5rem;
+
+  @media screen and (max-width: 680px) {
+    margin-bottom: 2rem;
+    height: 150px;
+  }
 `
 
 interface Props {
@@ -37,14 +47,13 @@ function ArtistDetail({
         listStyle,
         {
           '@media (max-width: 680px)': {
-            marginTop: '1.5rem',
+            marginTop: '1.25rem',
             marginBottom: '2rem',
           },
         },
       ]}
     >
       <CoverImage src={coverUrl} alt={title} />
-      <Spacing size='2.5rem' />
       <Title>{title}</Title>
       <Spacing size='2rem' />
       <DateIndicator>

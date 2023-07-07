@@ -13,6 +13,10 @@ function Title({ children }: Props) {
     font-size: 2.75rem;
     width: 100%;
     transition: ${transition.fast};
+
+    @media screen and (max-width: 680px) {
+      font-size: 2.25rem;
+    }
   `
 
   return <h1 css={style}>{children}</h1>

@@ -141,6 +141,56 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
     transition: ${transition.fast};
     margin: 1rem 0;
   }
+
+  @media screen and (max-width: 680px) {
+    * {
+      &:not(code) {
+        letter-spacing: 0.075rem;
+        font-size: 1rem;
+        line-height: 1.75rem;
+      }
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      font-size: 2rem;
+    }
+
+    h3 {
+      margin-top: 1.75rem;
+      font-size: 1.75rem;
+    }
+
+    h4 {
+      margin-top: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    h5 {
+      margin-top: 1.25rem;
+      font-size: 1.25rem;
+    }
+
+    h6 {
+      margin-top: 1.15rem;
+      font-size: 1.15rem;
+    }
+
+    pre > div > code {
+      * {
+        letter-spacing: 0;
+        line-height: 1rem;
+      }
+    }
+  }
 `
 
 const codeBlock = (color: ThemeColor) => {
