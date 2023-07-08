@@ -66,6 +66,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:4.2.1"],\
             ["eslint-plugin-react", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:7.31.7"],\
             ["eslint-plugin-react-hooks", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:4.6.0"],\
+            ["feed", "npm:4.2.2"],\
             ["next", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:13.4.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:18.2.0"],\
@@ -7233,6 +7234,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["feed", [\
+        ["npm:4.2.2", {\
+          "packageLocation": "./.yarn/cache/feed-npm-4.2.2-0c45e7a1e4-2e6992a675.zip/node_modules/feed/",\
+          "packageDependencies": [\
+            ["feed", "npm:4.2.2"],\
+            ["xml-js", "npm:1.6.11"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["file-entry-cache", [\
         ["npm:6.0.1", {\
           "packageLocation": "./.yarn/cache/file-entry-cache-npm-6.0.1-31965cf0af-f49701feaa.zip/node_modules/file-entry-cache/",\
@@ -10075,6 +10086,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["sax", [\
+        ["npm:1.2.4", {\
+          "packageLocation": "./.yarn/cache/sax-npm-1.2.4-178f05f12f-d3df7d32b8.zip/node_modules/sax/",\
+          "packageDependencies": [\
+            ["sax", "npm:1.2.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["scheduler", [\
         ["npm:0.23.0", {\
           "packageLocation": "./.yarn/cache/scheduler-npm-0.23.0-a379a6bc3b-d79192eeaa.zip/node_modules/scheduler/",\
@@ -10257,6 +10277,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:4.2.1"],\
             ["eslint-plugin-react", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:7.31.7"],\
             ["eslint-plugin-react-hooks", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:4.6.0"],\
+            ["feed", "npm:4.2.2"],\
             ["next", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:13.4.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:f04bc9fe104ef01a29f56aeb59f7f09687d0a87001577d72ecebfd5543bd13042d247e22d97d18d4125ae6edc6cdc0366425cc5becbb2a69d371c97739fa66a1#npm:18.2.0"],\
@@ -11092,6 +11113,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/utf-8-validate",\
             "bufferutil",\
             "utf-8-validate"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["xml-js", [\
+        ["npm:1.6.11", {\
+          "packageLocation": "./.yarn/cache/xml-js-npm-1.6.11-56742b7fb0-24a5547991.zip/node_modules/xml-js/",\
+          "packageDependencies": [\
+            ["xml-js", "npm:1.6.11"],\
+            ["sax", "npm:1.2.4"]\
           ],\
           "linkType": "HARD"\
         }]\

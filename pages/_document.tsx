@@ -99,6 +99,30 @@ class MyDocument extends Document {
           />
 
           <link rel='shortcut icon' href='/favicon/favicon.ico' />
+
+          <meta
+            name='viewport'
+            content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover'
+          />
+
+          <link
+            rel='alternate'
+            type='application/rss+xml'
+            href='/rss.xml'
+            title='Solog RSS Feed'
+          />
+          <link
+            rel='alternate'
+            type='application/atom+xml'
+            href='/rss-atom.xml'
+            title='Solog RSS Atom'
+          />
+          <link
+            rel='alternate'
+            type='application/json'
+            href='/feed.json'
+            title='Solog JSON Feed'
+          />
         </Head>
         <body>
           <Main />
