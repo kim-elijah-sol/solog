@@ -22,7 +22,7 @@ const contents: Content[] = [
     content: markdown,
     description:
       'React Native에서 문자 렌더링 시 사용되는 Text 컴포넌트에서 한글이 한 줄을 넘어갈 때, 어절 단위로 개행 처리하는 방법을 소개합니다.',
-    coverUrl: '/assets/react-native-work-break/cover.png',
+    coverUrl: '/assets/react-native-word-break/cover.png',
     categorys: ['react', 'react-native', 'typescript'],
   },
 ]
