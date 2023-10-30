@@ -65,7 +65,7 @@ function ArtistDetail({
           <Categorys.Item key={index}>{category}</Categorys.Item>
         ))}
       </Categorys>
-      <Spacing size='2rem' />
+      <Spacing size='1rem' />
       <Markdown>{content}</Markdown>
     </Flex>
   )

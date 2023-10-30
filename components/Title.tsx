@@ -10,12 +10,13 @@ function Title({ children }: Props) {
 
   const style = css`
     color: ${color.text_900};
-    font-size: 2.75rem;
+    font-size: 2.5rem;
     width: 100%;
     transition: ${transition.fast};
+    word-break: keep-all;
 
     @media screen and (max-width: 680px) {
-      font-size: 2.25rem;
+      font-size: 2rem;
     }
   `
 

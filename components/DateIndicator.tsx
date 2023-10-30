@@ -13,10 +13,9 @@ function DateIndicator({ children }: Props) {
   const style = css`
     width: 100%;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 
     p {
-      font-size: 1.2rem;
       color: ${color.text_900};
       transition: ${transition.fast};
     }
@@ -24,8 +23,8 @@ function DateIndicator({ children }: Props) {
     svg {
       transition: ${transition.fast};
       fill: ${color.text_900};
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
     }
   `
 

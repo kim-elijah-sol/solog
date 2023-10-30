@@ -32,7 +32,7 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
     transition: ${transition.fast} !important;
     &:not(code) {
       letter-spacing: 0.075rem;
-      font-size: 1.15rem;
+      font-size: 1rem;
       line-height: 2rem;
     }
   }
@@ -147,7 +147,7 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
       &:not(code) {
         letter-spacing: 0.075rem;
         font-size: 1rem;
-        line-height: 1.75rem;
+        line-height: 1.6rem;
       }
     }
 
@@ -219,6 +219,8 @@ const codeBlock = (color: ThemeColor) => {
 
 function Markdown({ children }: Props) {
   const { color } = useTheme()
+
+  console.log(children)
 
   return (
     <MarkdownStyle themeColor={color}>

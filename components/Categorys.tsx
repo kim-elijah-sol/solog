@@ -42,11 +42,11 @@ function Item({ children, isDuplicated, onClick }: ItemProps) {
   const style = css`
     color: white;
     transition: ${transition.fast};
-    padding: 0 1rem;
+    padding: 0 0.75rem;
     background-color: ${outSideColor};
-    font-size: 1.15rem;
-    height: 32px;
-    line-height: 32px;
+    font-size: 1rem;
+    height: 28px;
+    line-height: 28px;
     border-radius: 16px;
     cursor: pointer;
     transform: rotate(0.001deg);
