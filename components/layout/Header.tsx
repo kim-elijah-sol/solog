@@ -1,7 +1,7 @@
 import ThemeToggleButton from '@components/ThemeToggleButton'
 import { css, Interpolation, Theme, useTheme } from '@emotion/react'
 import GithubMark from '@icons/GithubMark'
-import { firaCode } from '@styles/common'
+import { ibmPlexMono } from '@styles/common'
 import Link from 'next/link'
 import { ClassAttributes, HTMLAttributes } from 'react'
 import Flex from './Flex'
@@ -45,7 +45,7 @@ function Header(props: Omit<HeaderProps, 'children'>) {
         <Link
           href='/'
           css={[
-            firaCode(500),
+            ibmPlexMono(500),
             css`
               text-decoration: unset;
               color: ${color.text_900};

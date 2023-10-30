@@ -114,14 +114,14 @@ export const inputSizes = {
   focusOpacity: 0.7,
 }
 
-type FiraCodeFontWeight = 300 | 400 | 500 | 600 | 700
+type IBMPlexMonoFontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700
 
 /**
- * Fira Code 폰트 스타일
+ * IBM Plex Mono 폰트 스타일
  * @param weight : 폰트 굵기
  */
-export const firaCode = (weight: FiraCodeFontWeight = 400) => css`
-  font-family: 'Fira Code', monospace;
+export const ibmPlexMono = (weight: IBMPlexMonoFontWeight = 400) => css`
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: ${weight};
 `
 

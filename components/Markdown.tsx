@@ -83,7 +83,8 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
       > code {
         * {
           line-height: 1.75rem;
-          font-family: 'Fira Code', monospace !important;
+          font-family: 'IBM Plex Mono', monospace !important;
+          font-weight: 500;
           background-color: ${(props) =>
             getCodeBlockBackgroundColor(props.themeColor.type)} !important;
         }
