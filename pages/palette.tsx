@@ -118,6 +118,8 @@ export const markdown = `
     )
   }
   \`\`\`
+
+  \`code\` 블락
 `
 
 function Palette() {

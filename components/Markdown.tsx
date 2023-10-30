@@ -1,4 +1,4 @@
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import { ThemeColor } from 'emotion'
 import ReactMarkdown from 'react-markdown'
@@ -197,6 +197,15 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
 const codeBlock = (color: ThemeColor) => {
   const style: any = color.type === 'light' ? materialLight : materialDark
 
+  const inlineCodeStyle = css`
+    background-color: ${color.text_100};
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: ${color.text_800};
+    font-weight: 500;
+    font-size: 0.95rem;
+  `
+
   return {
     code({ node, inline, className, children, ...props }: CodeProps) {
       const match = /language-(\w+)/.exec(className || '')
@@ -210,7 +219,7 @@ const codeBlock = (color: ThemeColor) => {
           {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
       ) : (
-        <code className={className} {...props}>
+        <code css={inlineCodeStyle} className={className} {...props}>
           {children}
         </code>
       )
@@ -220,8 +229,6 @@ const codeBlock = (color: ThemeColor) => {
 
 function Markdown({ children }: Props) {
   const { color } = useTheme()
-
-  console.log(children)
 
   return (
     <MarkdownStyle themeColor={color}>
