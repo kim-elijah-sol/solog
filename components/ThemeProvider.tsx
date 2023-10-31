@@ -27,7 +27,9 @@ const ThemeProvider = ({ defaultTheme, children }: Props) => {
 
   useEffect(() => {
     if (isMount) {
-      setCookie('theme', currentTheme)
+      setCookie('theme', currentTheme, {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
+      })
     }
   }, [isMount, currentTheme])
 
