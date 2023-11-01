@@ -9,6 +9,7 @@ import styled from '@emotion/styled'
 import contents, { Content } from '@shared/contents'
 import { format } from 'date-fns'
 import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 
 const listStyle = css`
   max-width: 648px;
@@ -37,8 +38,10 @@ interface Props {
 }
 
 function ArtistDetail({
-  content: { title, coverUrl, createdAt, categorys, content },
+  content: { title, coverUrl, createdAt, categorys, content, description },
 }: Props) {
+  const seoTitle = `${title} | Solog`
+
   return (
     <Flex
       as='article'
@@ -53,6 +56,15 @@ function ArtistDetail({
         },
       ]}
     >
+      <Head>
+        <title>{seoTitle}</title>
+        <meta name='description' content={description} />
+        <meta property='og:title' content={seoTitle} />
+        <meta property='og:description' content={description} />
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:title' content={seoTitle} />
+        <meta name='twitter:description' content={description} />
+      </Head>
       <CoverImage src={coverUrl} alt={title} />
       <Title>{title}</Title>
       <Spacing size='2rem' />
