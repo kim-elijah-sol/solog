@@ -43,3 +43,7 @@ export function scaleForDomain(domain: [number, number], value: number) {
 
   return min + gap * scale
 }
+
+export function createUrl(title: string) {
+  return `/article/${title.replace(/ /g, '-')}`
+}
