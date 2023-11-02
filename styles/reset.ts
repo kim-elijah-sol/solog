@@ -20,7 +20,6 @@ export const reset = css`
     font-family: 'Noto Sans KR', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    line-height: 1.2;
     text-decoration: none;
 
     &:focus {
