@@ -29,7 +29,7 @@ const CoverImage = styled.img`
 
   @media screen and (max-width: 680px) {
     margin-bottom: 2rem;
-    height: 150px;
+    height: 200px;
   }
 `
 
@@ -77,7 +77,6 @@ function ArtistDetail({
           <Categorys.Item key={index}>{category}</Categorys.Item>
         ))}
       </Categorys>
-      <Spacing size='4rem' />
       <Markdown>{content}</Markdown>
     </Flex>
   )

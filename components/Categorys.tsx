@@ -17,6 +17,12 @@ function Categorys({ children }: Props) {
     width: 100%;
     gap: 12px;
     flex-wrap: wrap;
+
+    margin-bottom: 3rem;
+
+    @media screen and (max-width: 680px) {
+      margin-bottom: 2rem;
+    }
   `
 
   return <Flex css={style}>{children}</Flex>
