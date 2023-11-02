@@ -88,12 +88,12 @@ function ContentCard({
           <p
             css={{
               color: color.text_700,
-              fontSize: '1.25rem',
+              fontSize: '1.15rem',
               marginBottom: '1.75rem',
               wordBreak: 'keep-all',
               lineHeight: '1.5rem',
               '@media (max-width: 680px)': {
-                fontSize: '1.15rem',
+                fontSize: '1rem',
                 marginBottom: '1.25rem',
               },
             }}
