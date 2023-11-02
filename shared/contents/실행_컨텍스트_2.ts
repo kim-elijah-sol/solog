@@ -34,12 +34,12 @@ foo() // 6
 위와 같은 소스 코드가 존재한다면 실행 컨텍스트 스택에는 아래와 같이 실행 컨텍스트가 추가(push)되고 제거(pop)될 것이다.<br/><br/>
 
 - Stack : []
-- Stack:  [ Global_Context ] ← **Global_Context Push**
-- Stack : [ Global_Context, foo_Context ] ← **foo_Context Push**
-- Stack : [ Global_Context, foo_Context, bar_Context ] ← **bar_Context Push**
-- Stack : [ Global_Context, foo_Context ] ← **bar_Context Pop**
-- Stack : [ Global_Context ] ← **foo_Context Pop**
-- Stack : [] ← **Global_Context Pop**
+- Stack : [ Global_Context ] ← **\`Global_Context Push\`**
+- Stack : [ Global_Context, foo_Context ] ← **\`foo_Context Push\`**
+- Stack : [ Global_Context, foo_Context, bar_Context ] ← **\`bar_Context Push\`**
+- Stack : [ Global_Context, foo_Context ] ← **\`bar_Context Pop\`**
+- Stack : [ Global_Context ] ← **\`foo_Context Pop\`**
+- Stack : [] ← **\`Global_Context Pop\`**
 
 <br/>
 
@@ -83,9 +83,7 @@ foo(20); // 42
 
 <br/>
 
-앞으로 차근차근 위 소스 코드가 어떻게 동작하는지 실행 컨텍스트와 렉시컬 환경 관점으로 
-
-살펴볼 예정이다.
+앞으로 차근차근 위 소스 코드가 어떻게 동작하는지 실행 컨텍스트와 렉시컬 환경 관점으로 살펴볼 예정이다.
     `,
   description:
     '실행 컨텍스트는 “실행할 코드에 제공할 환경 정보들을 모아 놓은 객체” 이다.',
