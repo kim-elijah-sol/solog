@@ -33,7 +33,7 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
     &:not(code) {
       letter-spacing: 0.075rem;
       font-size: 1rem;
-      line-height: 2rem;
+      line-height: 1.6;
     }
   }
 
@@ -82,7 +82,6 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
 
       > code {
         * {
-          line-height: 1.75rem;
           font-family: 'IBM Plex Mono', monospace !important;
           font-weight: 500;
           background-color: ${(props) =>
@@ -199,11 +198,10 @@ const codeBlock = (color: ThemeColor) => {
 
   const inlineCodeStyle = css`
     background-color: ${color.text_100};
-    padding: 0.2rem 0.5rem;
+    padding: 0.1rem 0.4rem;
     border-radius: 4px;
     color: ${color.text_800};
-    font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   `
 
   return {
