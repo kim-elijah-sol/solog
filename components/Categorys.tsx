@@ -54,10 +54,13 @@ function Item({ children, isDuplicated, onClick }: ItemProps) {
     height: 28px;
     line-height: 28px;
     border-radius: 16px;
-    cursor: pointer;
     transform: rotate(0.001deg);
     white-space: nowrap;
 
+    ${onClick &&
+    `
+    cursor: pointer;
+    
     &:hover {
       background-color: ${opacity({
         color: inSideColor,
@@ -70,6 +73,7 @@ function Item({ children, isDuplicated, onClick }: ItemProps) {
         })};
       backdrop-filter: blur(4px);
     }
+    `}
   `
 
   return (
