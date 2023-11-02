@@ -27,10 +27,6 @@ export const reset = css`
       outline: 0;
     }
 
-    &:not(h1, h2, h3, h4, h5, h6) {
-      font-size: 14px;
-    }
-
     -webkit-tap-highlight-color: transparent;
   }
 `
