@@ -289,7 +289,7 @@ Window {
 위와 같을 것 같다.
     `,
   description:
-    '실행 컨텍스트는 스택으로 관리되는데, 이를 실행 컨텐스트 스택(Execution Context Stack)이라 부른다.',
+    '실행 컨텍스트 생성 과정을 통해 코드가 실행되는 과정을 알아보자. 1',
   coverUrl: '/assets/execution-context-1/cover.png',
   categorys: ['javascript'],
 }

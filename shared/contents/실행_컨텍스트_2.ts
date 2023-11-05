@@ -86,7 +86,7 @@ foo(20); // 42
 앞으로 차근차근 위 소스 코드가 어떻게 동작하는지 실행 컨텍스트와 렉시컬 환경 관점으로 살펴볼 예정이다.
     `,
   description:
-    '실행 컨텍스트는 “실행할 코드에 제공할 환경 정보들을 모아 놓은 객체” 이다.',
+    '실행 컨텍스트는 스택으로 관리되는데, 이를 실행 컨텐스트 스택(Execution Context Stack)이라 부른다.',
   coverUrl: '/assets/execution-context-1/cover.png',
   categorys: ['javascript'],
 }
