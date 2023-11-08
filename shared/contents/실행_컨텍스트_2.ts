@@ -87,6 +87,6 @@ foo(20); // 42
     `,
   description:
     '실행 컨텍스트는 스택으로 관리되는데, 이를 실행 컨텐스트 스택(Execution Context Stack)이라 부른다.',
-  coverUrl: '/assets/execution-context-1/cover.png',
+  coverUrl: '/assets/execution-context-2/cover.webp',
   categorys: ['javascript'],
 }

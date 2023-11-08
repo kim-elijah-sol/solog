@@ -403,6 +403,6 @@ foo 함수 또한 함수 내부에서 더 이상할 할 일이 없기 때문에 
     `,
   description:
     '실행 컨텍스트 생성 과정을 통해 코드가 실행되는 과정을 알아보자. 2',
-  coverUrl: '/assets/execution-context-1/cover.png',
+  coverUrl: '/assets/execution-context-4/cover.webp',
   categorys: ['javascript'],
 }

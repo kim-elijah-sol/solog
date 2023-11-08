@@ -73,6 +73,6 @@ eval 코드는 **strict mode** 에서 **독자적인 스코프**를 생성한다
     `,
   description:
     '실행 컨텍스트는 “실행할 코드에 제공할 환경 정보들을 모아 놓은 객체” 이다.',
-  coverUrl: '/assets/execution-context-1/cover.png',
+  coverUrl: '/assets/execution-context-1/cover.webp',
   categorys: ['javascript'],
 }

@@ -290,6 +290,6 @@ Window {
     `,
   description:
     '실행 컨텍스트 생성 과정을 통해 코드가 실행되는 과정을 알아보자. 1',
-  coverUrl: '/assets/execution-context-1/cover.png',
+  coverUrl: '/assets/execution-context-3/cover.webp',
   categorys: ['javascript'],
 }
