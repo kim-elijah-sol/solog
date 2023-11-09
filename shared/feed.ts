@@ -1,7 +1,7 @@
 import { Feed } from 'feed'
 import contents from './contents'
 
-const baseUrl = 'https://solog.io'
+const baseUrl = 'https://solog.dev'
 
 const master = {
   name: 'kim sol',

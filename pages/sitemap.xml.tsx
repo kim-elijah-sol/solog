@@ -9,11 +9,11 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 
   sb.setSitemaps(
     contents.map(({ url, createdAt, coverUrl }) => ({
-      loc: `https://solog.io${url}`,
+      loc: `https://solog.dev${url}`,
       changefreq: 'monthly',
       priority: 0.8,
       lastmod: createdAt,
-      image: `https://solog.io${coverUrl}`,
+      image: `https://solog.dev${coverUrl}`,
     }))
   )
 
