@@ -185,7 +185,7 @@ foo 함수 렉시컬 환경을 생성하고 foo 함수 실행 컨텍스트에 �
 
 ### 2-a 함수 환경 레코드 생성
 
-함수 코드는 [해당 글](https://www.notion.so/1-Execution-Context-8c8fa29210aa4b33ba46697336732c1b?pvs=21)에 정리한 것처럼 지역 변수, 매개 변수, **\`arguments\`** 객체를 관리한다.
+함수 코드는 지역 변수, 매개 변수, **\`arguments\`** 객체를 관리한다.
 
 ### 2-b this 바인딩
 
