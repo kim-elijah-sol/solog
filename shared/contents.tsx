@@ -1,4 +1,5 @@
 import { markdown } from 'pages/palette'
+import { 렉시컬_스코프 } from './contents/렉시컬_스코프'
 import { 렉시컬_환경 } from './contents/렉시컬_환경'
 import { 스코프_체인 } from './contents/스코프_체인'
 import { 실행_컨텍스트_1 } from './contents/실행_컨텍스트_1'
@@ -17,6 +18,7 @@ export type Content = {
 }
 
 const contents: Content[] = [
+  렉시컬_스코프,
   렉시컬_환경,
   스코프_체인,
   실행_컨텍스트_4,
