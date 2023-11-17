@@ -7,6 +7,7 @@ import Header from '@components/layout/Header'
 import ParentContainer from '@components/layout/ParentContaier'
 import NotificationCenter from '@components/NotificationCenter'
 import { ThemeType } from '@atoms/global/theme'
+import useFirebaseInit from '@hooks/global/useFirebaseInit'
 
 interface Props {
   theme: ThemeType
@@ -14,6 +15,8 @@ interface Props {
 
 function MyApp({ Component, pageProps }: AppProps<Props>) {
   const { theme } = pageProps
+
+  useFirebaseInit()
 
   return (
     <RecoilRoot>
