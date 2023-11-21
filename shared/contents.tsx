@@ -1,4 +1,5 @@
 import { markdown } from 'pages/palette'
+import { React에서_SOLID_원칙_LSP } from './contents/React에서_SOLID_원칙_LSP'
 import { React에서_SOLID_원칙_OCP } from './contents/React에서_SOLID_원칙_OCP'
 import { React에서_SOLID_원칙_SRP } from './contents/React에서_SOLID_원칙_SRP'
 import { 렉시컬_스코프 } from './contents/렉시컬_스코프'
@@ -20,6 +21,7 @@ export type Content = {
 }
 
 const contents: Content[] = [
+  React에서_SOLID_원칙_LSP,
   React에서_SOLID_원칙_OCP,
   React에서_SOLID_원칙_SRP,
   렉시컬_스코프,
