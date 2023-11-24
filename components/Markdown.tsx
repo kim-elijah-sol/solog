@@ -34,6 +34,7 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
       letter-spacing: 0.075rem;
       font-size: 1rem;
       line-height: 1.6;
+      word-break: keep-all;
     }
   }
 
