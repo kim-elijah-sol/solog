@@ -58,7 +58,7 @@ export const React에서_SOLID_원칙_LSP: Content = {
   
   기존 **\`input\`** 은 \`className\` 에 \`design-input\` 이 고정되어 있지 않다.<br /><br />
   
-  하지만 이 컴포넌트는 \`className\` 을 내부에서 \`design-input\` 으로 지정하고 외부에서 변경되는 것을 막아두었기 때문에 부모 컴포넌트인 \`**input**\` 의 \`className\` 을 대체할 수 없다.
+  하지만 이 컴포넌트는 \`className\` 을 내부에서 \`design-input\` 으로 지정하고 외부에서 변경되는 것을 막아두었기 때문에 부모 컴포넌트인 **\`input\`** 의 \`className\` 을 대체할 수 없다.
   
   ### 선언되지 않은 Props 사용 불가능
   
