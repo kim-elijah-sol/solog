@@ -145,8 +145,8 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   @media screen and (max-width: 680px) {
     * {
       &:not(code) {
-        letter-spacing: 0.075rem;
-        font-size: 1rem;
+        letter-spacing: 0;
+        font-size: 0.875rem;
         line-height: 1.6rem;
       }
     }
@@ -160,28 +160,28 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
     }
 
     h2 {
-      margin-top: 2rem;
-      font-size: 2rem;
-    }
-
-    h3 {
-      margin-top: 1.75rem;
-      font-size: 1.75rem;
-    }
-
-    h4 {
       margin-top: 1.5rem;
       font-size: 1.5rem;
     }
 
+    h3 {
+      margin-top: 1.4rem;
+      font-size: 1.4rem;
+    }
+
+    h4 {
+      margin-top: 1.3rem;
+      font-size: 1.3rem;
+    }
+
     h5 {
-      margin-top: 1.25rem;
-      font-size: 1.25rem;
+      margin-top: 1.2rem;
+      font-size: 1.2rem;
     }
 
     h6 {
-      margin-top: 1.15rem;
-      font-size: 1.15rem;
+      margin-top: 1.1rem;
+      font-size: 1.1rem;
     }
 
     pre > div > code {
@@ -198,10 +198,10 @@ const codeBlock = (color: ThemeColor) => {
 
   const inlineCodeStyle = css`
     background-color: ${color.text_100};
-    padding: 0.1rem 0.4rem;
+    padding: 0.05rem 0.4rem;
     border-radius: 4px;
     color: ${color.text_800};
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   `
 
   return {
