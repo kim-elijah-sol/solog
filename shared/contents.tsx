@@ -1,9 +1,9 @@
-import { markdown } from 'pages/palette'
 import { React에서_SOLID_원칙_DIP } from './contents/React에서_SOLID_원칙_DIP'
 import { React에서_SOLID_원칙_ISP } from './contents/React에서_SOLID_원칙_ISP'
 import { React에서_SOLID_원칙_LSP } from './contents/React에서_SOLID_원칙_LSP'
 import { React에서_SOLID_원칙_OCP } from './contents/React에서_SOLID_원칙_OCP'
 import { React에서_SOLID_원칙_SRP } from './contents/React에서_SOLID_원칙_SRP'
+import { this_란_1 } from './contents/this_란_1'
 import { 렉시컬_스코프 } from './contents/렉시컬_스코프'
 import { 렉시컬_환경 } from './contents/렉시컬_환경'
 import { 스코프_체인 } from './contents/스코프_체인'
@@ -23,6 +23,7 @@ export type Content = {
 }
 
 const contents: Content[] = [
+  this_란_1,
   React에서_SOLID_원칙_DIP,
   React에서_SOLID_원칙_ISP,
   React에서_SOLID_원칙_LSP,
