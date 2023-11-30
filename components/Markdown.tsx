@@ -31,7 +31,6 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   * {
     transition: ${transition.fast} !important;
     &:not(code) {
-      letter-spacing: 0.075rem;
       font-size: 1rem;
       line-height: 1.6;
       word-break: keep-all;
@@ -146,7 +145,6 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   @media screen and (max-width: 680px) {
     * {
       &:not(code) {
-        letter-spacing: 0;
         font-size: 0.875rem;
         line-height: 1.6rem;
       }
@@ -187,7 +185,6 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
 
     pre > div > code {
       * {
-        letter-spacing: 0;
         line-height: 1rem;
       }
     }
