@@ -12,6 +12,7 @@ import { CodeProps } from 'react-markdown/lib/ast-to-react'
 import transition from '@styles/transition'
 import { ThemeType } from '@atoms/global/theme'
 import { darkColor, lightColor, staticColor } from '@styles/palette'
+import { CodeFontFamilyType } from '@atoms/global/codeFontFamily'
 
 interface Props {
   children: string
@@ -19,6 +20,7 @@ interface Props {
 
 interface MarkdownStyleProps {
   themeColor: ThemeColor
+  codeFontFamily: CodeFontFamilyType
 }
 
 function getCodeBlockBackgroundColor(theme: ThemeType) {
@@ -82,7 +84,7 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
 
       > code {
         * {
-          font-family: 'IBM Plex Mono', monospace !important;
+          font-family: '${(props) => props.codeFontFamily}', monospace !important;
           font-weight: 500;
           background-color: ${(props) =>
             getCodeBlockBackgroundColor(props.themeColor.type)} !important;
@@ -191,10 +193,11 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   }
 `
 
-const codeBlock = (color: ThemeColor) => {
+const codeBlock = (color: ThemeColor, codeFontFamily: CodeFontFamilyType) => {
   const style: any = color.type === 'light' ? materialLight : materialDark
 
   const inlineCodeStyle = css`
+    font-family: '${codeFontFamily}', monospace !important;
     background-color: ${color.text_100};
     padding: 0.05rem 0.4rem;
     border-radius: 4px;
@@ -224,11 +227,14 @@ const codeBlock = (color: ThemeColor) => {
 }
 
 function Markdown({ children }: Props) {
-  const { color } = useTheme()
+  const { color, codeFontFamily } = useTheme()
 
   return (
-    <MarkdownStyle themeColor={color}>
-      <ReactMarkdown rehypePlugins={[rehypeRaw]} components={codeBlock(color)}>
+    <MarkdownStyle themeColor={color} codeFontFamily={codeFontFamily}>
+      <ReactMarkdown
+        rehypePlugins={[rehypeRaw]}
+        components={codeBlock(color, codeFontFamily)}
+      >
         {children}
       </ReactMarkdown>
     </MarkdownStyle>
