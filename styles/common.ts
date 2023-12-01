@@ -125,6 +125,17 @@ export const ibmPlexMono = (weight: IBMPlexMonoFontWeight = 400) => css`
   font-weight: ${weight};
 `
 
+type FiraCodeFontWeight = 300 | 400 | 500 | 600 | 700
+
+/**
+ * Fira Code 폰트 스타일
+ * @param weight : 폰트 굵기
+ */
+export const firaCode = (weight: FiraCodeFontWeight = 400) => css`
+  font-family: 'Fira Code', monospace;
+  font-weight: ${weight};
+`
+
 export const getSquareString = (size: number | string) => {
   const suffix = typeof size === 'number' ? 'px' : ''
   const value = `${size}${suffix}`

@@ -13,6 +13,8 @@ import transition from '@styles/transition'
 import { ThemeType } from '@atoms/global/theme'
 import { darkColor, lightColor, staticColor } from '@styles/palette'
 import { CodeFontFamilyType } from '@atoms/global/codeFontFamily'
+import { relative } from '@styles/common'
+import CodeFontTool from './CodeFontTool'
 
 interface Props {
   children: string
@@ -77,7 +79,7 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
   }
 
   pre {
-    > div {
+    > div > div {
       background-color: ${(props) =>
         getCodeBlockBackgroundColor(props.themeColor.type)} !important;
       border-radius: 8px;
@@ -185,7 +187,7 @@ const MarkdownStyle = styled.div<MarkdownStyleProps>`
       font-size: 1.1rem;
     }
 
-    pre > div > code {
+    pre > div > div > code {
       * {
         line-height: 1rem;
       }
@@ -209,14 +211,17 @@ const codeBlock = (color: ThemeColor, codeFontFamily: CodeFontFamilyType) => {
     code({ node, inline, className, children, ...props }: CodeProps) {
       const match = /language-(\w+)/.exec(className || '')
       return !inline && match ? (
-        <SyntaxHighlighter
-          style={style}
-          language={match[1]}
-          PreTag='div'
-          {...props}
-        >
-          {String(children).replace(/\n$/, '')}
-        </SyntaxHighlighter>
+        <div css={relative}>
+          <CodeFontTool.FontFamilySetting />
+          <SyntaxHighlighter
+            style={style}
+            language={match[1]}
+            PreTag='div'
+            {...props}
+          >
+            {String(children).replace(/\n$/, '')}
+          </SyntaxHighlighter>
+        </div>
       ) : (
         <code css={inlineCodeStyle} className={className} {...props}>
           {children}
