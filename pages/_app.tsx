@@ -8,26 +8,31 @@ import ParentContainer from '@components/layout/ParentContaier'
 import NotificationCenter from '@components/NotificationCenter'
 import { ThemeType } from '@atoms/global/theme'
 import useFirebaseInit from '@hooks/global/useFirebaseInit'
+import { CodeFontFamilyType } from '@atoms/global/codeFontFamily'
+import CodeFontFamilyProvider from '@components/CodeFontFamilyProvider'
 
 interface Props {
   theme: ThemeType
+  codeFontFamily: CodeFontFamilyType
 }
 
 function MyApp({ Component, pageProps }: AppProps<Props>) {
-  const { theme } = pageProps
+  const { theme, codeFontFamily } = pageProps
 
   useFirebaseInit()
 
   return (
     <RecoilRoot>
       <ThemeProvider defaultTheme={theme}>
-        <Seo />
-        <GlobalStyle />
-        <Header />
-        <ParentContainer>
-          <Component {...pageProps} />
-        </ParentContainer>
-        <NotificationCenter />
+        <CodeFontFamilyProvider defaultCodeFontFamily={codeFontFamily}>
+          <Seo />
+          <GlobalStyle />
+          <Header />
+          <ParentContainer>
+            <Component {...pageProps} />
+          </ParentContainer>
+          <NotificationCenter />
+        </CodeFontFamilyProvider>
       </ThemeProvider>
     </RecoilRoot>
   )
@@ -42,7 +47,12 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
 
   const theme = request?.cookies?.theme
 
+  const codeFontFamily = request?.cookies?.codeFontFamily
+
   pageProps.theme = theme === 'dark' ? 'dark' : 'light'
+
+  pageProps.codeFontFamily =
+    codeFontFamily === 'Fira Code' ? 'Fira Code' : 'IBM Plex Mono'
 
   return { pageProps }
 }
