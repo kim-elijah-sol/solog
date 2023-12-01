@@ -1,5 +1,5 @@
 import { css, Interpolation, Theme } from '@emotion/react'
-import { ClassAttributes, HTMLAttributes } from 'react'
+import { ClassAttributes, forwardRef, HTMLAttributes } from 'react'
 
 type ContainerProps = ClassAttributes<HTMLDivElement> &
   HTMLAttributes<HTMLDivElement> & {
@@ -12,7 +12,7 @@ interface Props extends ContainerProps {
   as?: 'article' | 'main'
 }
 
-function Flex(props: Props) {
+function Flex(props: Props, $ref: React.Ref<HTMLDivElement>) {
   const { children, column, as, ...containerProps } = props
 
   const Container = as ?? 'div'
@@ -23,10 +23,10 @@ function Flex(props: Props) {
   `
 
   return (
-    <Container {...containerProps} css={[style]}>
+    <Container ref={$ref} {...containerProps} css={[style]}>
       {children}
     </Container>
   )
 }
 
-export default Flex
+export default forwardRef(Flex)
