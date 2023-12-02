@@ -83,7 +83,7 @@ function Card({
 
   const stackedCardLength = viewableCardLength - priorityDecrease
 
-  const scale = (bottom + 1) / stackedCardLength
+  const scale = stackedCardLength === 0 ? 0 : (bottom + 1) / stackedCardLength
 
   const containerStyle = css`
     animation: ${begin} ${transition.normal} ease forwards;
