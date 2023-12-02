@@ -212,6 +212,7 @@ const codeBlock = (color: ThemeColor, codeFontFamily: CodeFontFamilyType) => {
       const match = /language-(\w+)/.exec(className || '')
       return !inline && match ? (
         <div css={relative}>
+          <CodeFontTool.CopyButton />
           <CodeFontTool.FontFamilySetting />
           <SyntaxHighlighter
             style={style}
