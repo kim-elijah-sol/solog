@@ -35,9 +35,11 @@ const CoverImage = styled.img`
 
 interface Props {
   content: Content
+  prevContent: Content | null
+  nextContent: Content | null
 }
 
-function ArtistDetail({
+function ArticleDetail({
   content: { title, coverUrl, createdAt, categorys, content, description },
 }: Props) {
   const seoTitle = `${title} | Solog`
@@ -85,20 +87,24 @@ function ArtistDetail({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { title } = context.query
 
-  const matchedContent = contents.find(
+  const matchedContentIndex = contents.findIndex(
     (content) => content.title.replace(/ /g, '-') === title
   )
 
-  if (!matchedContent)
+  if (matchedContentIndex === -1)
     return {
       notFound: true,
     }
 
+  const props: Props = {
+    content: contents[matchedContentIndex],
+    prevContent: contents[matchedContentIndex - 1] ?? null,
+    nextContent: contents[matchedContentIndex + 1] ?? null,
+  }
+
   return {
-    props: {
-      content: matchedContent,
-    },
+    props,
   }
 }
 
-export default ArtistDetail
+export default ArticleDetail
