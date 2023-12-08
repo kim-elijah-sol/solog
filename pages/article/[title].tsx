@@ -11,6 +11,7 @@ import contents, { Content } from '@shared/contents'
 import { format } from 'date-fns'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 
 const listStyle = css`
   max-width: 648px;
@@ -93,9 +94,25 @@ function ArticleDetail({
           <Spacing size='6rem' />
           <ArticleNavigator>
             {prevContent !== null && (
-              <ArticleNavigator.Prev href={prevContent.url}>
-                {prevContent.title}
-              </ArticleNavigator.Prev>
+              <Link href={prevContent.url}>
+                <ArticleNavigator.Wrap type='prev'>
+                  <ArticleNavigator.Label>이전 아티클</ArticleNavigator.Label>
+                  <ArticleNavigator.Title>
+                    {prevContent.title}
+                  </ArticleNavigator.Title>
+                </ArticleNavigator.Wrap>
+              </Link>
+            )}
+
+            {nextContent !== null && (
+              <Link href={nextContent.url}>
+                <ArticleNavigator.Wrap type='next'>
+                  <ArticleNavigator.Label>다음 아티클</ArticleNavigator.Label>
+                  <ArticleNavigator.Title>
+                    {nextContent.title}
+                  </ArticleNavigator.Title>
+                </ArticleNavigator.Wrap>
+              </Link>
             )}
           </ArticleNavigator>
         </>
