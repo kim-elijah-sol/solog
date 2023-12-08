@@ -44,6 +44,8 @@ function ArticleDetail({
 }: Props) {
   const seoTitle = `${title} | Solog`
 
+  const ogImage = `https://solog.dev${coverUrl}`
+
   return (
     <Flex
       as='article'
@@ -63,14 +65,11 @@ function ArticleDetail({
         <meta name='description' content={description} />
         <meta property='og:title' content={seoTitle} />
         <meta property='og:description' content={description} />
-        <meta property='og:image' content={`https://solog.dev${coverUrl}`} />
+        <meta property='og:image' content={ogImage} />
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:title' content={seoTitle} />
         <meta name='twitter:description' content={description} />
-        <meta
-          property='twitter:image'
-          content={`https://solog.dev${coverUrl}`}
-        />
+        <meta property='twitter:image' content={ogImage} />
       </Head>
       <CoverImage src={coverUrl} alt={title} />
       <Title>{title}</Title>
