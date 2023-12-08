@@ -10,7 +10,7 @@ const nextConfig = {
   output: 'export',
   images: {
     loader: 'imgix',
-    domains: ['newevolutiondesigns.com'],
+    path: '',
   },
   webpack(config) {
     const _config = Object.assign(config, {
