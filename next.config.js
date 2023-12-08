@@ -7,9 +7,7 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
-  images: {
-    path: '',
-  },
+  images: {},
   webpack(config) {
     const _config = Object.assign(config, {
       resolve: {
