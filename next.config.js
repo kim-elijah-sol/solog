@@ -7,6 +7,7 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  output: 'export',
   images: {
     domains: ['newevolutiondesigns.com'],
   },
