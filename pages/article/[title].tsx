@@ -1,3 +1,4 @@
+import ArticleNavigator from '@components/ArticleNavigator'
 import Categorys from '@components/Categorys'
 import DateIndicator from '@components/DateIndicator'
 import Flex from '@components/layout/Flex'
@@ -41,6 +42,8 @@ interface Props {
 
 function ArticleDetail({
   content: { title, coverUrl, createdAt, categorys, content, description },
+  prevContent,
+  nextContent,
 }: Props) {
   const seoTitle = `${title} | Solog`
 
@@ -84,6 +87,19 @@ function ArticleDetail({
         ))}
       </Categorys>
       <Markdown>{content}</Markdown>
+
+      {(prevContent !== null || nextContent !== null) && (
+        <>
+          <Spacing size='6rem' />
+          <ArticleNavigator>
+            {prevContent !== null && (
+              <ArticleNavigator.Prev href={prevContent.url}>
+                {prevContent.title}
+              </ArticleNavigator.Prev>
+            )}
+          </ArticleNavigator>
+        </>
+      )}
     </Flex>
   )
 }
@@ -102,8 +118,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const props: Props = {
     content: contents[matchedContentIndex],
-    prevContent: contents[matchedContentIndex - 1] ?? null,
-    nextContent: contents[matchedContentIndex + 1] ?? null,
+    prevContent: contents[matchedContentIndex + 1] ?? null,
+    nextContent: contents[matchedContentIndex - 1] ?? null,
   }
 
   return {
