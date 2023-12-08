@@ -7,7 +7,6 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
-  output: 'export',
   images: {
     loader: 'imgix',
     path: '',
