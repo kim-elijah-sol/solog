@@ -25,7 +25,6 @@ function MyApp({ Component, pageProps }: AppProps<Props>) {
     <RecoilRoot>
       <ThemeProvider defaultTheme={theme}>
         <CodeFontFamilyProvider defaultCodeFontFamily={codeFontFamily}>
-          <Seo />
           <GlobalStyle />
           <Header />
           <ParentContainer>

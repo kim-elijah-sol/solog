@@ -1,5 +1,6 @@
 import ContentCard from '@components/ContentCard'
 import Flex from '@components/layout/Flex'
+import Seo from '@components/Seo'
 import { css } from '@emotion/react'
 import contents from '@shared/contents'
 
@@ -12,23 +13,26 @@ const listStyle = css`
 
 function Home() {
   return (
-    <Flex
-      as='article'
-      column
-      css={[
-        listStyle,
-        {
-          '@media (max-width: 680px)': {
-            marginTop: '1.5rem',
-            marginBottom: '2rem',
+    <>
+      <Seo />
+      <Flex
+        as='article'
+        column
+        css={[
+          listStyle,
+          {
+            '@media (max-width: 680px)': {
+              marginTop: '1.5rem',
+              marginBottom: '2rem',
+            },
           },
-        },
-      ]}
-    >
-      {contents.map((content, index) => (
-        <ContentCard {...content} key={index} index={index} />
-      ))}
-    </Flex>
+        ]}
+      >
+        {contents.map((content, index) => (
+          <ContentCard {...content} key={index} index={index} />
+        ))}
+      </Flex>
+    </>
   )
 }
 
