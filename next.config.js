@@ -8,7 +8,6 @@ const nextConfig = {
     scrollRestoration: true,
   },
   images: {
-    loader: 'imgix',
     path: '',
   },
   webpack(config) {
