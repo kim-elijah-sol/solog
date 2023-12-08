@@ -9,6 +9,7 @@ const nextConfig = {
   },
   output: 'export',
   images: {
+    loader: 'imgix',
     domains: ['newevolutiondesigns.com'],
   },
   webpack(config) {
