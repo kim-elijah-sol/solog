@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps<Props>) {
       <ThemeProvider defaultTheme={theme}>
         <CodeFontFamilyProvider defaultCodeFontFamily={codeFontFamily}>
           <GlobalStyle />
-          <Header />
+          {(Component as any).withoutHeader ? null : <Header />}
           <ParentContainer>
             <Component {...pageProps} />
           </ParentContainer>
