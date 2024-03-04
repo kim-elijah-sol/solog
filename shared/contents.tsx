@@ -1,3 +1,4 @@
+import { NextJs에서_Body_구하기 } from './contents/NextJs에서_Body_구하기'
 import { React에서_SOLID_원칙_DIP } from './contents/React에서_SOLID_원칙_DIP'
 import { React에서_SOLID_원칙_ISP } from './contents/React에서_SOLID_원칙_ISP'
 import { React에서_SOLID_원칙_LSP } from './contents/React에서_SOLID_원칙_LSP'
@@ -24,6 +25,7 @@ export type Content = {
 }
 
 const contents: Content[] = [
+  NextJs에서_Body_구하기,
   this_란_2,
   this_란_1,
   React에서_SOLID_원칙_DIP,
