@@ -45,5 +45,5 @@ export function scaleForDomain(domain: [number, number], value: number) {
 }
 
 export function createUrl(title: string) {
-  return `/article/${title.replace(/ /g, '-')}`
+  return `/article/${title.replace(/ /g, '-').replace(/\./g, '-')}`
 }

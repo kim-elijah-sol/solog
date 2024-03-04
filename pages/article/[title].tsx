@@ -125,7 +125,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { title } = context.query
 
   const matchedContentIndex = contents.findIndex(
-    (content) => content.title.replace(/ /g, '-') === title
+    (content) => content.title.replace(/ /g, '-').replace(/\./g, '-') === title
   )
 
   if (matchedContentIndex === -1)
